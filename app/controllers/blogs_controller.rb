@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
       render :new
     else
       if @blog.save
-        redirect_to blog_path(@blog), notice: "Blog was successfully created."
+        redirect_to blog_path(@blog), notice: t("notice.create")
       else
         render :new
       end
@@ -35,7 +35,7 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blog_path(@blog), notice: "Blog was successfully updated."
+      redirect_to blog_path(@blog), notice: t("notice.update")
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to blogs_path, notice: "Blog was successfully destroyed."
+    redirect_to blogs_path, notice: t("notice.destroy")
   end
 
   private
