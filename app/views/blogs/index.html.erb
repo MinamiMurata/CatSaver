@@ -1,0 +1,22 @@
+<h3>体験記一覧</h3>
+
+<p><%= notice %></p>
+
+<div><%= link_to 'New Post', new_blog_path %></div>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= link_to 'Show', blog_path(blog.id) %></td>
+    <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
+    <td><%= link_to 'Destroy', blog_path(blog.id), method: :delete ,data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
