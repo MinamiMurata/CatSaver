@@ -1,0 +1,40 @@
+ja:
+  activerecord:
+    models:
+      blog: 体験記
+      user: ユーザー
+    attributes:
+      blog:
+        title: タイトル
+        content: 本文
+        image: 画像
+        disease_name: 病名
+        age_range: 年齢層
+      user:
+        name: 名前
+        email: メールアドレス
+        admin: 管理者権限
+  time:
+    formats:
+      date_only: "%Y/%m/%d"
+  enums:
+    blog:
+      age_range:
+        default: ""
+        under_one: 1歳未満
+        one_to_three: 1〜3歳
+        four_to_six: 4〜6歳
+        seven_to_nine: 7〜9歳
+        ten_to_twelve: 10〜12歳
+        over_thirteen: 13歳以上
+  views:
+    pagination:
+      first: "&laquo; "
+      last: " &raquo;"
+      previous: "&lsaquo; "
+      next: " &rsaquo;"
+      truncate: "..."
+  notice:
+    create: 体験記を投稿しました！
+    update: 体験記を編集しました！
+    destroy: 体験記を削除しました！

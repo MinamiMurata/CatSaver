@@ -1,0 +1,26 @@
+<h3>体験記一覧</h3>
+
+<p><%= notice %></p>
+
+<div><%= link_to '新規登録', new_blog_path %></div>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>病名</th>
+    <th>年齢層</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= blog.disease_name %></td>
+    <td><%= blog.age_range_i18n %></td>
+    <td><%= link_to '確認', blog_path(blog.id) %></td>
+    <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
+    <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+  </tr>
+<% end %>
+</table>
