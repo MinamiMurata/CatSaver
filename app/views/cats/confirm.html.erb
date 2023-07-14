@@ -4,10 +4,12 @@
   <%= form.hidden_field :name %>
   <%= form.hidden_field :introduction %>
   <%= form.hidden_field :birthday %>
+  <%= form.hidden_field :breed_id %>
 
   <p><%= form.label :name %>：<%= @cat.name %></p>
   <p><%= form.label :introduction %>：<%= @cat.introduction %></p>
   <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") %></p>
+  <p><%= form.label :breed_name %>：<%= @cat.breed.name %></p>
   <%= form.submit %>
 
   <%= form.submit '戻る', name: 'back' %>

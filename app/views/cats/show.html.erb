@@ -3,5 +3,6 @@
 <p>名前：<%= @cat.name %></p>
 <p>紹介文：<%= @cat.introduction %></p>
 <p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") %></p>
+<p>猫種名：<%= @cat.breed.name %></p>
 
 <%= link_to '戻る', blogs_path %>
