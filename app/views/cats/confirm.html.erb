@@ -7,7 +7,7 @@
 
   <p><%= form.label :name %>：<%= @cat.name %></p>
   <p><%= form.label :introduction %>：<%= @cat.introduction %></p>
-  <p><%= form.label :birthday %>：<%= @cat.birthday %></p>
+  <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") %></p>
   <%= form.submit %>
 
   <%= form.submit '戻る', name: 'back' %>

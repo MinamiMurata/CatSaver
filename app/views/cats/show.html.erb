@@ -2,6 +2,6 @@
 
 <p>名前：<%= @cat.name %></p>
 <p>紹介文：<%= @cat.introduction %></p>
-<p>生年月日：<%= @cat.birthday %></p>
+<p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") %></p>
 
 <%= link_to '戻る', blogs_path %>
