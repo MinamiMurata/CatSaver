@@ -3,6 +3,7 @@ ja:
     models:
       blog: 体験記
       user: ユーザー
+      cat: 猫
     attributes:
       blog:
         title: タイトル
@@ -14,6 +15,11 @@ ja:
         name: 名前
         email: メールアドレス
         admin: 管理者権限
+      cat:
+        name: 名前
+        introduction: 紹介文
+        image: 画像
+        birthday: 生年月日
   time:
     formats:
       date_only: "%Y/%m/%d"
@@ -38,3 +44,6 @@ ja:
     create: 体験記を投稿しました！
     update: 体験記を編集しました！
     destroy: 体験記を削除しました！
+    cat_create: 猫を登録しました！
+    cat_update: 猫情報を編集しました！
+    cat_destroy: 猫情報を削除しました！

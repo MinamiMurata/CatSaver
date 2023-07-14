@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  introduction: MyText
+  image: MyText
+  birthday: 2023-07-14
+
+two:
+  name: MyString
+  introduction: MyText
+  image: MyText
+  birthday: 2023-07-14
