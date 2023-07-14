@@ -1,0 +1,30 @@
+<%= form_with(model: @cat, local: true ,url: choose_new_or_edit ) do |form| %>
+  <% if @cat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @cat.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @cat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="cat_name">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="cat_introduction">
+    <%= form.label :introduction %>
+    <%= form.text_field :introduction %>
+  </div>
+  <div class="cat_birthday">
+    <%= form.label :birthday %>
+    <%= form.date_field :birthday %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to '戻る', blogs_path %>

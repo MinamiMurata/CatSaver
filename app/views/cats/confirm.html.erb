@@ -1,0 +1,15 @@
+<h3>以下の内容で、登録する。</h3>
+
+<%= form_with(model: @cat, url: cats_path, local: true) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :introduction %>
+  <%= form.hidden_field :birthday %>
+
+  <p><%= form.label :name %>：<%= @cat.name %></p>
+  <p><%= form.label :introduction %>：<%= @cat.introduction %></p>
+  <p><%= form.label :birthday %>：<%= @cat.birthday %></p>
+  <%= form.submit %>
+
+  <%= form.submit '戻る', name: 'back' %>
+
+<% end %>
