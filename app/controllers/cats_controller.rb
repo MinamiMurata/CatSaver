@@ -1,13 +1,14 @@
 class CatsController < ApplicationController
   before_action :set_cat, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy]
+  before_action :check_user, only: %i[edit update destroy]
 
   def new
     @cat = Cat.new
   end
 
   def create
-    @cat = Cat.new(cat_params)
+    @cat = current_user.cats.build(cat_params)
     if params[:back]
       render :new
     else
@@ -23,7 +24,7 @@ class CatsController < ApplicationController
   end
 
   def confirm
-    @cat = Cat.new(cat_params)
+    @cat = current_user.cats.build(cat_params)
     render :new if @cat.invalid?
   end
 
@@ -51,5 +52,9 @@ class CatsController < ApplicationController
 
   def set_cat
     @cat = Cat.find(params[:id])
+  end
+
+  def check_user
+    redirect_to cat_path unless current_user == @cat.user
   end
 end
