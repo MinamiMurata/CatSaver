@@ -1,11 +1,13 @@
 <h3>以下の内容で、投稿する。</h3>
 
 <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+  <%= form.hidden_field :cat_id %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :disease_name %>
   <%= form.hidden_field :age_range %>
 
+  <p><%= form.label :cat_name %>：<%= @blog.cat.name if @blog.cat.present? %></p>
   <p><%= form.label :title %>：<%= @blog.title %></p>
   <p><%= form.label :content %>：<%= @blog.content %></p>
   <p><%= form.label :disease_name %>：<%= @blog.disease_name %></p>
