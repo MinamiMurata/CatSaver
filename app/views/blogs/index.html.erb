@@ -15,6 +15,7 @@
     <th>内容</th>
     <th>病名</th>
     <th>年齢層</th>
+    <th>投稿者</th>
   </tr>
 
 <% @blogs.each do |blog| %>
@@ -23,8 +24,9 @@
     <td><%= blog.content %></td>
     <td><%= blog.disease_name %></td>
     <td><%= blog.age_range_i18n %></td>
-    <% if user_signed_in? %>
-      <td><%= link_to '確認', blog_path(blog.id) %></td>
+    <td><%= blog.user.name %></td>
+    <td><%= link_to '確認', blog_path(blog.id) %></td>
+    <% if blog.user == current_user %>
       <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
       <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
     <% end %>
