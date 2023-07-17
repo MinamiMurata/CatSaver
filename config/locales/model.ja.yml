@@ -20,6 +20,7 @@ ja:
         introduction: 紹介文
         image: 画像
         birthday: 生年月日
+        breed_name: 猫種名
   time:
     formats:
       date_only: "%Y/%m/%d"

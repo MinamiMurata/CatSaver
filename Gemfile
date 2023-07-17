@@ -23,6 +23,7 @@ gem 'enum_help'
 gem 'devise'
 gem 'rexml'
 gem 'devise-i18n'
+gem 'seed-fu'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
