@@ -28,7 +28,6 @@ ja:
   enums:
     blog:
       age_range:
-        default: ""
         under_one: 1歳未満
         one_to_three: 1〜3歳
         four_to_six: 4〜6歳

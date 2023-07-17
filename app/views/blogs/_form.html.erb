@@ -14,7 +14,7 @@
   <div class="blog_cat_name">
     <%= form.label :cat_name %>
     <%# = form.collection_check_boxes :cat_id, current_user.cats, :id, :name, include_hidden: false %>
-    <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]} %>
+    <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, include_blank: true %>
   </div>
   <div class="blog_title">
     <%= form.label :title %>
@@ -30,7 +30,7 @@
   </div>
   <div class="blog_age_range">
     <%= form.label :age_range %>
-    <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]} %>
+    <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: true %>
   </div>
 
 
