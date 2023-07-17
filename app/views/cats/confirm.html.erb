@@ -8,7 +8,7 @@
 
   <p><%= form.label :name %>：<%= @cat.name %></p>
   <p><%= form.label :introduction %>：<%= @cat.introduction %></p>
-  <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") %></p>
+  <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday.present? %></p>
   <p><%= form.label :breed_name %>：<%= @cat.breed.name %></p>
   <%= form.submit %>
 
