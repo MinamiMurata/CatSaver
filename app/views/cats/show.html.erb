@@ -5,4 +5,9 @@
 <p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday.present? %></p>
 <p>猫種名：<%= @cat.breed.name %></p>
 
+<% if @cat.user == current_user %>
+  <td><%= link_to '編集', edit_cat_path(@cat.id) %></td>
+  <td><%= link_to '削除', cat_path(@cat.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+<% end %>
+
 <%= link_to '戻る', blogs_path %>
