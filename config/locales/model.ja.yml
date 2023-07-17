@@ -11,6 +11,7 @@ ja:
         image: 画像
         disease_name: 病名
         age_range: 年齢層
+        cat_name: 猫名
       user:
         name: 名前
         email: メールアドレス

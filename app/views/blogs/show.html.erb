@@ -1,4 +1,5 @@
 <h3><%= @blog.user.name %>さんの体験記詳細画面</h3>
+<p>猫名：<%= @blog.cat.name if @blog.cat.present? %></p>
 
 <p>タイトル：<%= @blog.title %></p>
 <p>本文：<%= @blog.content %></p>
