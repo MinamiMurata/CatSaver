@@ -11,15 +11,21 @@
   </head>
 
   <body>
-    <%= link_to "ホーム", blogs_path %>
-    <% if user_signed_in? %>
-      <%= link_to "マイページ", user_path(current_user.id) %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "ログイン", new_user_session_path %>
-      <%= link_to "新規登録", new_user_registration_path %>
-    <% end %>
-
+    <header>
+      <h3>CatSaver</h3>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <%= link_to "症状から調べる" %>
+        <%= link_to "体験記を見る", blogs_path %>
+        <% if user_signed_in? %>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ユーザー登録", new_user_registration_path %>
+        <% end %>
+      </nav>
+    </header>
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
@@ -28,5 +34,9 @@
     <% end %>
     
     <%= yield %>
+
+    <footer>
+      <div>&copy;Min. 2023</div>
+    </footer>
   </body>
 </html>
