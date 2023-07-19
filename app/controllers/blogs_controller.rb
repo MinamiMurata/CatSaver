@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :check_user, only: %i[edit update destroy]
 
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc)
   end
 
   def new
