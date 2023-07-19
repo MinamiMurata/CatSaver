@@ -1,0 +1,66 @@
+<h3><%= @user.name %>さんのページ</h3>
+
+<h3>ユーザー名</h3>
+<%= @user.name %>
+<h3>プロフィール</h3>
+<%= @user.introduction %>
+<h3>メールアドレス</h3>
+<%= @user.email %>
+
+  <div class="user-edit">
+    <% if @user == current_user %>
+        <%= link_to "アカウント情報編集", edit_user_registration_path, class: "user-edit-btn" %>
+        <%= link_to "パスワード変更", edit_password_path, class: "user-edit-btn" %>
+        <%= link_to '猫の登録', new_cat_path %>
+    <% end %>
+  </div>
+
+<table>
+  <tr>
+    <th>名前</th>
+    <th>猫種</th>
+  </tr>
+
+<% @cats.each do |cat| %>
+  <tr>
+    <td><%= cat.name %></td>
+    <td><%= cat.breed.name %></td>
+    <td><%= link_to '確認', cat_path(cat.id) %></td>
+    <% if cat.user == current_user %>
+      <td><%= link_to '編集', edit_cat_path(cat.id) %></td>
+      <td><%= link_to '削除', cat_path(cat.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<% if user_signed_in? %>
+<div><%= link_to '体験記 新規登録', new_blog_path %></div>
+<% end %>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>病名</th>
+    <th>年齢層</th>
+    <th>投稿者</th>
+    <th>投稿日</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= blog.disease_name %></td>
+    <td><%= blog.age_range_i18n %></td>
+    <td><%= blog.user.name %></td>
+    <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
+    <td><%= link_to '確認', blog_path(blog.id) %></td>
+    <% if blog.user == current_user %>
+      <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
+      <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

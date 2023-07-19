@@ -21,6 +21,7 @@ class CatsController < ApplicationController
   end
 
   def show
+    @blogs = @cat.blogs.all
   end
 
   def confirm
