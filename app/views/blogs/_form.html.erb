@@ -33,6 +33,13 @@
     <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: true %>
   </div>
 
+  <div class="blog_symptom">
+    <%= form.label :symptom %><br>
+    <% Symptom.all.each do |symptom| %>
+      <%= form.check_box :symptom_ids, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:id] %>
+      <%= form.label :symptom_ids, symptom.detail, value: symptom[:id] %>
+    <% end %>
+  </div>
 
   <%= form.submit %>
 <% end %>

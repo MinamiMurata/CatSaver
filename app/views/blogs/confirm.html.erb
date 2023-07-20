@@ -6,12 +6,21 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :disease_name %>
   <%= form.hidden_field :age_range %>
+  <% @blog.symptoms.each do |symptom| %>
+    <%= form.hidden_field :symptom_ids, multiple: true, value: symptom.id %>
+  <% end %>
 
   <p><%= form.label :cat_name %>：<%= @blog.cat.name if @blog.cat.present? %></p>
   <p><%= form.label :title %>：<%= @blog.title %></p>
   <p><%= form.label :content %>：<%= @blog.content %></p>
   <p><%= form.label :disease_name %>：<%= @blog.disease_name %></p>
   <p><%= form.label :age_range %>：<%= @blog.age_range_i18n %></p>
+  <p><%= form.label :symptom %>：
+    <% @blog.symptoms.each do |symptom| %>
+      #<%= symptom.detail %>
+    <% end %>
+  </p>
+
   <%= form.submit %>
 
   <%= form.submit '戻る', name: 'back' %>
