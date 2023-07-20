@@ -1,6 +1,6 @@
 require "csv"
 
-csv = CSV.read("db/fixtures/breed.csv")
+csv = CSV.read("db/fixtures/breeds.csv")
 csv.each do |breed|
   Breed.seed do |s|
     s.id = breed[0]

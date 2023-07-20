@@ -35,6 +35,21 @@ ja:
         seven_to_nine: 7〜9歳
         ten_to_twelve: 10〜12歳
         over_thirteen: 13歳以上
+    symptom:
+      category:
+        eyes: 目
+        nose: 鼻
+        mouth_teeth: 口・歯
+        ears: 耳
+        skin_hair: 皮膚・被毛
+        paws: 足
+        buttocks: 臀部・陰部
+        excretion: 排泄
+        appetite: 飲食
+        body_temperature: 体温
+        breath: 呼吸
+        weight: 体重
+        body_others: その他・体全体
   views:
     pagination:
       first: "&laquo; "

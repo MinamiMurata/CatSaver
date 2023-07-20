@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_17_081533) do
+ActiveRecord::Schema.define(version: 2023_07_20_073834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 2023_07_17_081533) do
     t.bigint "user_id", null: false
     t.index ["breed_id"], name: "index_cats_on_breed_id"
     t.index ["user_id"], name: "index_cats_on_user_id"
+  end
+
+  create_table "symptoms", force: :cascade do |t|
+    t.integer "category"
+    t.string "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
