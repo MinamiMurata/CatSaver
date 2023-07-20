@@ -12,6 +12,7 @@ ja:
         disease_name: 病名
         age_range: 年齢層
         cat_name: 猫名
+        symptom: 症状
       user:
         name: 名前
         introduction: プロフィール
