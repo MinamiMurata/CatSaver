@@ -25,7 +25,7 @@
   </div>
     <div class="cat_breed_name">
     <%= form.label :breed_name %>
-    <%= form.select :breed_id, Breed.all.map{|b|[b.name, b.id]} %>
+    <%= form.select :breed_id, Breed.all.map{|b|[b.name, b.id]}, include_blank: "選択してください"%>
   </div>
 
   <%= form.submit %>
