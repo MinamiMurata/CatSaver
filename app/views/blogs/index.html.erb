@@ -1,5 +1,12 @@
 <h3>体験記一覧</h3>
 
+<%= search_form_for @q, url: blogs_path do |f| %>
+   <%= f.search_field :title_or_content_or_disease_name_or_symptoms_detail_cont, class: 'form-control', placeholder: '検索ワード' %>
+   <%= f.select :age_range_eq, Blog.age_ranges_i18n.invert.map {|key, value| [key, Blog.age_ranges[value]]}, include_blank: "年齢で絞り込み" %>
+   <%= f.select :cat_breed_id_eq, options_from_collection_for_select(Breed.all, :id, :name), { include_blank: "猫種で絞り込み" } %>
+   <%= f.submit '検索' %>
+<% end %>
+
 <table>
   <tr>
     <th>タイトル</th>
