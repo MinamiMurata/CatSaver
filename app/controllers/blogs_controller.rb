@@ -1,10 +1,12 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
+  before_action :set_q, only: [:index]
   before_action :authenticate_user!, only: %i[new edit update destroy]
   before_action :check_user, only: %i[edit update destroy]
 
   def index
-    @blogs = Blog.all.order(created_at: :desc)
+    @blogs = @q.result(distinct: true).order(created_at: :desc)
+    @q = Blog.ransack
   end
 
   def new
@@ -56,6 +58,10 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.find(params[:id])
+  end
+
+  def set_q
+    @q = Blog.ransack(params[:q])
   end
 
   def check_user
