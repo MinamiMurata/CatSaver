@@ -6,6 +6,7 @@ class Blog < ApplicationRecord
   belongs_to :cat, optional: true
   has_many :taggings, dependent: :destroy
   has_many :symptoms, through: :taggings
+  has_many_attached :images
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title content disease_name age_range]
