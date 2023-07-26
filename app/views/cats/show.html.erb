@@ -1,5 +1,12 @@
 <h3><%= @cat.user.name %>さんの猫情報詳細画面</h3>
 
+<div>
+  <% if @cat.image.present? %>
+    <%= image_tag @cat.image.url, class: "main_icon" %>
+  <% else %>
+    <%= image_tag asset_path('cat_icon.jpg'), class: "main_icon" %>
+  <% end %>
+</div>
 <p>名前：<%= @cat.name %></p>
 <p>紹介文：<%= @cat.introduction %></p>
 <p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday.present? %></p>

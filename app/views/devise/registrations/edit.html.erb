@@ -9,6 +9,19 @@
   </div>
 
   <div class="field">
+    <%= f.label :image %>
+    <% if @user.image.present? %>
+    <p>現在登録されている画像</p>
+    <p>（削除する場合はチェックしてください。変更する場合は変更したい画像を選択してください。）</p>
+    <label>
+      <%= image_tag @user.image.url, class: "main_icon" %>
+      <%= f.check_box :remove_image %>削除
+    </label>
+    <% end %><br>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
     <%= f.label :introduction %><br />
     <%= f.text_field :introduction, autocomplete: "introduction" %>
   </div>

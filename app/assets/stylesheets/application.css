@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.main_icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}

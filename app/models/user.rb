@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :blogs
   has_many :cats
+  mount_uploader :image, ImageUploader
 
   def update_without_password(params)
     params.delete(:current_password)
