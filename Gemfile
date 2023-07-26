@@ -17,6 +17,8 @@ gem 'turbolinks', '~> 5'
 
 gem 'jbuilder', '~> 2.7'
 
+gem 'image_processing', '~> 1.2'
+
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'enum_help'
@@ -25,6 +27,7 @@ gem 'rexml'
 gem 'devise-i18n'
 gem 'seed-fu'
 gem 'ransack'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -15,6 +15,20 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  
+  <div class="field">
+    <%= form.label :image %>
+    <% if @cat.image.present? %>
+    <p>現在登録されている画像</p>
+    <p>（削除する場合はチェックしてください。変更する場合は変更したい画像を選択してください。）</p>
+    <label>
+      <%= image_tag @cat.image.url, class: "main_icon" %>
+      <%= form.check_box :remove_image %>削除
+    </label>
+    <% end %><br>
+    <%= form.file_field :image %>
+  </div>
+
   <div class="cat_introduction">
     <%= form.label :introduction %>
     <%= form.text_field :introduction %>

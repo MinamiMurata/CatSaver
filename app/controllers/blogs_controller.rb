@@ -38,6 +38,12 @@ class BlogsController < ApplicationController
   end
 
   def update
+    if params[:blog][:image_ids]
+      params[:blog][:image_ids].each do |image_id|
+        image = @blog.images.find(image_id)
+        image.purge
+      end
+    end
     if @blog.update(blog_params)
       redirect_to blog_path(@blog), notice: t("notice.update")
     else
@@ -53,7 +59,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :image, :image_cache, :disease_name, :age_range, :cat_id, { symptom_ids: [] })
+    params.require(:blog).permit(:title, :content, :disease_name, :age_range, :cat_id, { symptom_ids: [] }, images: [])
   end
 
   def set_blog

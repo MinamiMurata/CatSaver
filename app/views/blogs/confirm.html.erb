@@ -1,8 +1,11 @@
-<h3>以下の内容で、投稿する。</h3>
+<h3>以下の内容で、投稿する？</h3>
 
 <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
   <%= form.hidden_field :cat_id %>
   <%= form.hidden_field :title %>
+  <% @blog.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :disease_name %>
   <%= form.hidden_field :age_range %>
@@ -12,6 +15,11 @@
 
   <p><%= form.label :cat_name %>：<%= @blog.cat.name if @blog.cat.present? %></p>
   <p><%= form.label :title %>：<%= @blog.title %></p>
+  <p><%= form.label :images %>：
+    <% @blog.images.each do |image| %>
+      <%= image_tag(image.variant(resize_to_limit: [200, 200])) %>
+    <% end %>
+  </p>
   <p><%= form.label :content %>：<%= @blog.content %></p>
   <p><%= form.label :disease_name %>：<%= @blog.disease_name %></p>
   <p><%= form.label :age_range %>：<%= @blog.age_range_i18n %></p>
