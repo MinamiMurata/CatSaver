@@ -13,7 +13,6 @@
 
   <div class="blog_cat_name">
     <%= form.label :cat_name %>
-    <%# = form.collection_check_boxes :cat_id, current_user.cats, :id, :name, include_hidden: false %>
     <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, include_blank: true %>
   </div>
   <div class="blog_title">

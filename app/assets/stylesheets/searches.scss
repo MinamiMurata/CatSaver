@@ -1,0 +1,95 @@
+/* アコーディオン */
+.accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.menu {
+  position: relative;
+  padding: 0 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* (+)アイコン */
+.menu::before,
+.menu::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  background-color: #9cc;
+  width: 20px;
+  height: 4px;
+  transition: all 0.3s;
+}
+
+.menu::after {
+  transform: rotate(90deg);
+}
+
+.contents {
+  text-align: center;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-duration: 0.4s;
+}
+
+.contents.is-open {
+  border: none;
+  padding: 5px;
+  line-height: normal;
+  height: auto;
+  opacity: 1;
+}
+
+/* アコーディオン展開時の(-)アイコン */
+.menu.is-active.menu::before {
+  transform: rotate(180deg);
+}
+
+.menu.is-active.menu::after {
+  transform: rotate(180deg);
+  opacity: 0;
+}
+
+/* チェックボックスをボタンに */
+.btn_check {
+  display: inline-block;
+  position: relative;
+  margin: 3px;
+  font-size: 0.8rem;
+}
+
+.btn_check input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+}
+
+.btn_check label {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  background: #eee;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn_check label:hover,
+.btn_check input:checked + label {
+  background: #fbb;
+  color: #fff;
+}
+
+/* ChatGpt結果表示書式 */
+.ChatGpt_result {
+  white-space: pre;
+}

@@ -15,7 +15,7 @@
       <h3>CatSaver</h3>
       <nav>
         <%= link_to "Home", root_path %>
-        <%= link_to "症状から調べる" %>
+        <%= link_to "症状から調べる", select_symptom_path %>
         <%= link_to "体験記を見る", blogs_path %>
         <% if user_signed_in? %>
           <%= link_to "マイページ", user_path(current_user.id) %>
