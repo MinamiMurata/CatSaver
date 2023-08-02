@@ -56,6 +56,11 @@ class BlogsController < ApplicationController
     redirect_to blogs_path, notice: t("notice.destroy")
   end
 
+  def get_details
+    @details = Symptom.where(category: params[:symptom_category]).pluck(:id, :detail)
+    render json: @details
+  end
+
   private
 
   def blog_params

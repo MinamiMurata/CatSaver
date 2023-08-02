@@ -1,4 +1,4 @@
-<%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
+<%= form_with(model: @blog, url: choose_new_or_edit ) do |form| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
@@ -22,7 +22,8 @@
 
 
   <div>
-    <%= form.label :images, "画像（複数選択が可能です）" %>
+    <%= form.label :image %>
+    <p>（複数選択が可能です）</p>
     <%= form.file_field :images, direct_upload: true, multiple: true %>
   </div>
   <% if @blog.images.attached? %>
@@ -50,13 +51,52 @@
 
   <div class="blog_symptom">
     <%= form.label :symptom %><br>
-    <% Symptom.all.each do |symptom| %>
-      <%= form.check_box :symptom_ids, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:id] %>
-      <%= form.label :symptom_ids, symptom.detail, value: symptom[:id] %>
-    <% end %>
+    <p>カテゴリーを選択すると詳細が表示されます。（複数カテゴリー・詳細の選択が可能です）</p>
+    <%= form.select :symptom_category, Symptom.categories.keys.map {|k| [I18n.t("enums.symptom.category.#{k}"), k]}, { include_blank: "選択してください" }, id: "input-select" %>
+    <div>
+      <% @blog.symptoms.each do |symptom| %>
+        <div class="btn_detail">
+          <%= form.check_box :symptom_ids, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:id] %>
+          <%= form.label :symptom_ids, symptom.detail, value: symptom[:id] %>
+        </div>
+      <% end %>
+    </div>
+    <div class="js-details"></div>
   </div>
 
   <%= form.submit %>
 <% end %>
 
-<%= link_to '戻る', user_path(current_user.id) %>
+<%= link_to '戻る', 'javascript:history.back()' %>
+
+<script>
+  document.addEventListener("turbolinks:load", function() {
+    const inputSelect = document.getElementById("input-select");
+
+    inputSelect.addEventListener("change", function() {
+      const selectedValue = [...inputSelect.selectedOptions].map(option => option.value);
+      const selectedValuesCategoryCount = document.querySelectorAll(`[data-category=${selectedValue}]`).length
+
+      if (!selectedValuesCategoryCount == 0) return;
+
+      $.ajax({
+        type: 'GET',
+        url: '/blogs/get_details',
+        data:  { symptom_category: selectedValue },
+        dataType: 'json'
+      })
+      .done(function (details) {
+        details.forEach(function(detail) {
+          var id = detail[0];
+          var detail = detail[1];
+          $('.js-details').append(
+            `<div class="btn_detail">
+              <input type="checkbox" id="blog_symptom_ids_${id}" name="blog[symptom_ids][]" value="${id}">
+              <label for="blog_symptom_ids_${id}" data-category="${selectedValue}">${detail}</label>
+            </div>`
+          );
+        });
+      })
+    });
+  })
+</script>
