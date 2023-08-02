@@ -28,6 +28,11 @@ gem 'devise-i18n'
 gem 'seed-fu'
 gem 'ransack'
 gem 'carrierwave'
+gem 'ruby-openai'
+gem 'dotenv-rails'
+gem 'pry-rails'
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

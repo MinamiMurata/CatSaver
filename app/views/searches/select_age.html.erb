@@ -1,0 +1,14 @@
+<h3>年齢層の選択</h3>
+
+<%= form_with url: select_breed_path, method: :get, local: true do |form| %>
+
+  <div class="field">
+    <p>該当する項目を選んで「次へ」を押してください。<br>
+    （年齢で絞り込みを行わない場合は、何も選択せずに「次へ」進んでください。）</p>
+    <strong><%= form.label :age_range %></strong>
+    <%= form.select :age_range, @age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: "選択してください" %>
+  </div>
+<%= form.submit '次へ', name: nil %>
+<% end %>
+
+<%= link_to '戻る', 'javascript:history.back()' %>
