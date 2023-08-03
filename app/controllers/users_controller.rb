@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: :show
+  before_action :set_user, only: %i[show blog_list]
 
   def show
-    @cats = current_user.cats.all
-    @blogs = current_user.blogs.all.order(created_at: :desc).limit(3)
+    @cats = @user.cats.all
+    @blogs = @user.blogs.all.order(created_at: :desc).limit(3)
+  end
+
+  def blog_list
+    @blogs = @user.blogs.all.order(created_at: :desc)
   end
 
   private
