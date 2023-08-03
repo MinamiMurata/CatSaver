@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     put "users/:id/update_password", to: "users/registrations#update_password", as: "update_password"
   end
   resources :blogs do
-    collection { post :confirm }
+    collection do
+      post :confirm
+      get :get_details
+    end
   end
   resources :cats do
     collection { post :confirm }

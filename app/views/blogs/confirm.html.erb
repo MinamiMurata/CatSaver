@@ -1,4 +1,4 @@
-<h3>以下の内容で、投稿する？</h3>
+<h3>以下の内容で、投稿しますか？</h3>
 
 <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
   <%= form.hidden_field :cat_id %>
@@ -15,7 +15,7 @@
 
   <p><%= form.label :cat_name %>：<%= @blog.cat.name if @blog.cat.present? %></p>
   <p><%= form.label :title %>：<%= @blog.title %></p>
-  <p><%= form.label :images %>：
+  <p><%= form.label :image %>：
     <% @blog.images.each do |image| %>
       <%= image_tag(image.variant(resize_to_limit: [200, 200])) %>
     <% end %>

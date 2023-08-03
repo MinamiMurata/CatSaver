@@ -1,3 +1,27 @@
-// Place all the styles related to the blogs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.btn_detail {
+  display: inline-block;
+  position: relative;
+  margin: 3px;
+  font-size: 0.5rem;
+}
+
+.btn_detail input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+}
+
+.btn_detail label {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #eee;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn_detail label:hover,
+.btn_detail input:checked + label {
+  background: #09c;
+  color: #fff;
+}

@@ -16,4 +16,7 @@
   <% end %>
 </p>
 
+<% if @blog.user == current_user %>
+  <%= link_to '編集', edit_blog_path(@blog) %> |
+<% end %>
 <%= link_to '戻る', 'javascript:history.back()' %>

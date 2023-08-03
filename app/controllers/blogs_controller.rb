@@ -4,6 +4,8 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit update destroy]
   before_action :check_user, only: %i[edit update destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   def index
     @blogs = @q.result(distinct: true).order(created_at: :desc)
     @q = Blog.ransack
@@ -56,6 +58,11 @@ class BlogsController < ApplicationController
     redirect_to blogs_path, notice: t("notice.destroy")
   end
 
+  def get_details
+    @details = Symptom.where(category: params[:symptom_category]).pluck(:id, :detail)
+    render json: @details
+  end
+
   private
 
   def blog_params
@@ -72,5 +79,9 @@ class BlogsController < ApplicationController
 
   def check_user
     redirect_to blog_path unless current_user == @blog.user
+  end
+
+  def record_not_found
+    redirect_to blogs_path
   end
 end
