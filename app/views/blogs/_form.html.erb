@@ -74,7 +74,7 @@
     const inputSelect = document.getElementById("input-select");
 
     inputSelect.addEventListener("change", function() {
-      const selectedValue = [...inputSelect.selectedOptions].map(option => option.value);
+      const selectedValue = inputSelect.value;
       const selectedValuesCategoryCount = document.querySelectorAll(`[data-category=${selectedValue}]`).length
 
       if (!selectedValuesCategoryCount == 0) return;

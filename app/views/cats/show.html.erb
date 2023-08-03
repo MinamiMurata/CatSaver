@@ -9,7 +9,7 @@
 </div>
 <p>名前：<%= @cat.name %></p>
 <p>紹介文：<%= @cat.introduction %></p>
-<p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday.present? %></p>
+<p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday %></p>
 <p>猫種名：<%= @cat.breed.name %></p>
 
 <% if @cat.user == current_user %>
@@ -42,4 +42,4 @@
 <% end %>
 </table>
 
-<%= link_to '戻る', :back %>
+<%= link_to '戻る', 'javascript:history.back()' %>

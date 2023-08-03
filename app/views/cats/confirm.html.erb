@@ -1,16 +1,16 @@
-<h3>以下の内容で、登録する。</h3>
+<h3>以下の内容で、登録しますか？</h3>
 
 <%= form_with(model: @cat, url: cats_path, local: true) do |form| %>
   <%= form.hidden_field :name %>
-  <%= form.hidden_field :image %>
+  <%= form.hidden_field :image_cache %>
   <%= form.hidden_field :introduction %>
   <%= form.hidden_field :birthday %>
   <%= form.hidden_field :breed_id %>
 
   <p><%= form.label :name %>：<%= @cat.name %></p>
-  <p><%= form.label :image %>：<%= @cat.image, class: "main_icon" %></p>
+  <p><%= form.label :image %>：<%= image_tag @cat.image.url, class: "main_icon" if @cat.image.url %></p>
   <p><%= form.label :introduction %>：<%= @cat.introduction %></p>
-  <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday.present? %></p>
+  <p><%= form.label :birthday %>：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday %></p>
   <p><%= form.label :breed_name %>：<%= @cat.breed.name %></p>
   <%= form.submit %>
 

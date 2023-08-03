@@ -3,6 +3,8 @@ class CatsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit update destroy]
   before_action :check_user, only: %i[edit update destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   def new
     @cat = Cat.new
   end
@@ -42,7 +44,7 @@ class CatsController < ApplicationController
 
   def destroy
     @cat.destroy
-    redirect_to blogs_path, notice: t("notice.cat_destroy")
+    redirect_to user_path(current_user), notice: t("notice.cat_destroy")
   end
 
   private
@@ -57,5 +59,9 @@ class CatsController < ApplicationController
 
   def check_user
     redirect_to cat_path unless current_user == @cat.user
+  end
+
+  def record_not_found
+    redirect_to blogs_path
   end
 end
