@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @blogs = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @blogs = pagy(@q.result(distinct: true).order(created_at: :desc))
     @q = Blog.ransack
   end
 

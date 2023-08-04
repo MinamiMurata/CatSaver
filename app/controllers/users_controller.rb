@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def blog_list
-    @blogs = @user.blogs.all.order(created_at: :desc)
+    @pagy, @blogs = pagy(@user.blogs.all.order(created_at: :desc))
   end
 
   private

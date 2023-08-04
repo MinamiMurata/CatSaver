@@ -19,6 +19,7 @@
 ## カリキュラム外の技術
 
 - gem ransack
+- gem pagy
 - ChatGPT API
 
 ## 実行手順
