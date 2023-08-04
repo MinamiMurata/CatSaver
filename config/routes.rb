@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get "searches/search_results", as: "search_results"
 
   devise_for :users, controllers: { registrations: "users/registrations" }
-  resources :users, only: :show
+  resources :users, only: :show do
+    member { get :blog_list }
+  end
   devise_scope :user do
     get "users/:id/edit_password", to: "users/registrations#edit_password", as: "edit_password"
     put "users/:id/update_password", to: "users/registrations#update_password", as: "update_password"

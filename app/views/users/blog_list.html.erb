@@ -1,0 +1,32 @@
+<h3><%= @user.name %>さんの体験記一覧</h3>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>病名</th>
+    <th>年齢層</th>
+    <th>投稿者</th>
+    <th>投稿日</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= blog.disease_name %></td>
+    <td><%= blog.age_range_i18n %></td>
+    <td><%= blog.user.name %></td>
+    <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
+    <td><%= link_to '確認', blog_path(blog.id) %></td>
+    <% if blog.user == current_user %>
+      <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
+      <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%== pagy_nav(@pagy) %>
+
+<%= link_to '戻る', 'javascript:history.back()' %>

@@ -7,29 +7,36 @@
    <%= f.submit '検索' %>
 <% end %>
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>病名</th>
-    <th>年齢層</th>
-    <th>投稿者</th>
-    <th>投稿日</th>
-  </tr>
+<% if @pagy.vars[:count] > 0 %>
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <th>内容</th>
+      <th>病名</th>
+      <th>年齢層</th>
+      <th>投稿者</th>
+      <th>投稿日</th>
+    </tr>
 
-<% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= blog.disease_name %></td>
-    <td><%= blog.age_range_i18n %></td>
-    <td><%= blog.user.name %></td>
-    <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
-    <td><%= link_to '確認', blog_path(blog.id) %></td>
-    <% if blog.user == current_user %>
-      <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
-      <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
-    <% end %>
-  </tr>
+  <% @blogs.each do |blog| %>
+    <tr>
+      <td><%= blog.title %></td>
+      <td><%= blog.content %></td>
+      <td><%= blog.disease_name %></td>
+      <td><%= blog.age_range_i18n %></td>
+      <td><%= link_to "#{blog.user.name}", user_path(blog.user) %></td>
+      <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
+      <td><%= link_to '確認', blog_path(blog.id) %></td>
+      <% if blog.user == current_user %>
+        <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
+        <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>検索結果は 0 件です。</p>
+  <p>恐れ入りますが、検索条件を変更してください。</p>
 <% end %>
-</table>
+
+<%== pagy_nav(@pagy) %>
