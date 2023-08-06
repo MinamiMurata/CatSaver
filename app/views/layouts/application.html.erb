@@ -25,7 +25,7 @@
           <%= link_to "ログイン", new_user_session_path %>
           <%= link_to "ユーザー登録", new_user_registration_path %>
         <% end %>
-        <% if user_signed_in? && current_user.admin? %>
+        <% if current_user&.admin? %>
           <%= link_to "管理者ページ", admin_root_path %>
         <% end %>
       </nav>

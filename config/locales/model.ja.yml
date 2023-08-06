@@ -4,6 +4,9 @@ ja:
       blog: 体験記
       user: ユーザー
       cat: 猫
+      breed: 猫種
+      symptom: 症状
+      comment: コメント
     attributes:
       blog:
         title: タイトル
@@ -53,7 +56,7 @@ ja:
         body_others: その他・体全体
     user:
       role:
-        gereral: 一般ユーザー
+        general: 一般
         admin: 管理者
         guest: ゲスト
   views:
@@ -89,3 +92,6 @@ ja:
   seven_to_nine: 7〜9歳
   ten_to_twelve: 10〜12歳
   over_thirteen: 13歳以上
+  general: 一般
+  admin: 管理者
+  guest: ゲスト

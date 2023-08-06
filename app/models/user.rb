@@ -15,4 +15,8 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name email role last_sign_in_at sign_in_count]
+  end
 end
