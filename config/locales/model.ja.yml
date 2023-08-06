@@ -17,7 +17,7 @@ ja:
         name: 名前
         introduction: プロフィール
         email: メールアドレス
-        admin: 管理者権限
+        role: 権限
       cat:
         name: 名前
         introduction: 紹介文
@@ -51,6 +51,11 @@ ja:
         breath: 呼吸
         weight: 体重
         body_others: その他・体全体
+    user:
+      role:
+        gereral: 一般ユーザー
+        admin: 管理者
+        guest: ゲスト
   views:
     pagination:
       first: "&laquo; "

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
+  enum role: { general: 0, admin: 1, guest: 2 }
   has_many :blogs
   has_many :cats
   mount_uploader :image, ImageUploader
