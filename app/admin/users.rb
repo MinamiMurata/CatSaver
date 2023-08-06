@@ -19,7 +19,9 @@ ActiveAdmin.register User do
       row :name
       row :email
       row :introduction
-      row :image
+      row :image do
+        image_tag(user.image.url, class: "main_icon") if user.image?
+      end
       row :role, :text, &:role_i18n
       row :last_sign_in_at
       row :sign_in_count
@@ -32,7 +34,7 @@ ActiveAdmin.register User do
   # 一覧ページの検索条件
   filter :name
   filter :email
-  filter :role, as: :select, collection: I18n.t(User.roles.keys)
+  filter :role, as: :select, collection: User.roles_i18n.invert.map { |k, v| [k, User.roles[v]] }
   filter :last_sign_in_at
   filter :sign_in_count
   filter :created_at
@@ -43,8 +45,9 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :introduction
-      f.input :image
-      f.input :role, as: :select, collection: I18n.t(User.roles.keys)
+      f.input :image, hint: (f.image_tag(f.user.image.url, class: "main_icon") if f.user.image?)
+      f.input :image_cache, as: :hidden
+      f.input :role, as: :select, collection: User.roles_i18n.invert
       f.input :password
       f.input :password_confirmation
     end

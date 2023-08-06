@@ -23,13 +23,13 @@ ActiveAdmin.register Symptom do
   end
 
   # 一覧ページの検索条件
-  filter :category, as: :select, collection: I18n.t(Symptom.categories.keys)
+  filter :category, as: :select, collection: Symptom.categories_i18n.invert.map { |k, v| [k, Symptom.categories[v]] }
   filter :detail
 
   # 新規作成/編集ページ
   form do |f|
     f.inputs do
-      f.input :category, as: :select, collection: I18n.t(Symptom.categories.keys)
+      f.input :category, as: :select, collection: Symptom.categories_i18n.invert
       f.input :detail
     end
     f.actions

@@ -16,7 +16,9 @@ ActiveAdmin.register Cat do
     attributes_table do
       row :name
       row :introduction
-      row :image
+      row :image do
+        image_tag(cat.image.url, class: "main_icon") if cat.image?
+      end
       row :birthday
       row :breed_id
       row :user_id
@@ -36,8 +38,9 @@ ActiveAdmin.register Cat do
     f.inputs do
       f.input :name
       f.input :introduction
-      f.input :image
-      f.input :birthday
+      f.input :image, hint: (f.image_tag(f.cat.image.url, class: "main_icon") if f.cat.image?)
+      f.input :image_cache, as: :hidden
+      f.input :birthday, as: :date_picker
       f.input :breed_id
       f.input :user_id
     end
