@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 
   def select_symptom
     @symptoms = Symptom.all
-    @symptoms_category = Symptom.categories.keys.push
+    @symptoms_categories = Symptom.categories.keys.push
   end
 
   def select_age

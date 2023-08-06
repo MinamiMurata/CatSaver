@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   end
   resources :cats do
     collection { post :confirm }
+    member { get :blog_list }
   end
 end
