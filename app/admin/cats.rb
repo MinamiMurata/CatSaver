@@ -20,8 +20,8 @@ ActiveAdmin.register Cat do
         image_tag(cat.image.url, class: "main_icon") if cat.image?
       end
       row :birthday
-      row :breed_id
-      row :user_id
+      row :breed
+      row :user
       row :created_at
       row :updated_at
     end
@@ -30,7 +30,7 @@ ActiveAdmin.register Cat do
 
   # 一覧ページの検索条件
   filter :name
-  filter :breed_id, as: :select
+  filter :breed, as: :select
   filter :created_at
 
   # 新規作成/編集ページ
@@ -41,8 +41,8 @@ ActiveAdmin.register Cat do
       f.input :image, hint: (f.image_tag(f.cat.image.url, class: "main_icon") if f.cat.image?)
       f.input :image_cache, as: :hidden
       f.input :birthday, as: :date_picker
-      f.input :breed_id
-      f.input :user_id
+      f.input :breed
+      f.input :user
     end
     f.actions
   end

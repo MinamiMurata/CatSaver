@@ -21,8 +21,8 @@ ActiveAdmin.register Blog do
       end
       row :disease_name
       row :age_range, :text, &:age_range_i18n
-      row :user_id
-      row :cat_id
+      row :user
+      row :cat
       row :created_at
       row :updated_at
     end
@@ -44,8 +44,11 @@ ActiveAdmin.register Blog do
       f.input :images, as: :file, input_html: { multiple: true }
       f.input :disease_name
       f.input :age_range, as: :select, collection: Blog.age_ranges_i18n.invert
-      f.input :user_id
-      f.input :cat_id
+      if blog.new_record?
+        f.input :user, as: :select
+      else
+        f.input :cat, as: :select, collection: blog.user.cats
+      end
     end
     f.actions
   end
