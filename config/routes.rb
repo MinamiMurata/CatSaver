@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "users/:id/edit_password", to: "users/registrations#edit_password", as: "edit_password"
     put "users/:id/update_password", to: "users/registrations#update_password", as: "update_password"
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+    post "users/guest_admin_sign_in", to: "users/sessions#guest_admin_sign_in"
   end
   resources :blogs do
     collection do

@@ -24,6 +24,12 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: t("guest_signed_in")
   end
 
+  def guest_admin_sign_in
+    admin = User.guest_admin
+    sign_in admin
+    redirect_to admin_root_path, notice: t("guest_admin_signed_in")
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
