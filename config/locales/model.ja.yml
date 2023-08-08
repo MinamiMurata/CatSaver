@@ -12,21 +12,40 @@ ja:
         title: タイトル
         content: 本文
         image: 画像
+        images: 画像
         disease_name: 病名
         age_range: 年齢層
         cat_name: 猫名
         symptom: 症状
+        user: ユーザー
+        cat: 猫
+        created_at: 作成日
+        updated_at: 更新日
       user:
         name: 名前
         introduction: プロフィール
         email: メールアドレス
         role: 権限
+        image: 画像
       cat:
         name: 名前
         introduction: 紹介文
         image: 画像
         birthday: 生年月日
         breed_name: 猫種名
+        breed: 猫種
+        user: ユーザー
+        created_at: 作成日
+        updated_at: 更新日
+      breed:
+        name: 名前
+        created_at: 作成日
+        updated_at: 更新日
+      symptom:
+        category: カテゴリー
+        detail: 詳細
+        created_at: 作成日
+        updated_at: 更新日
   time:
     formats:
       date_only: "%Y/%m/%d"
