@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root "home#index"
   get "searches/select_symptom", as: "select_symptom"
   get "searches/select_age", as: "select_age"
@@ -21,5 +22,6 @@ Rails.application.routes.draw do
   end
   resources :cats do
     collection { post :confirm }
+    member { get :blog_list }
   end
 end

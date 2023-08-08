@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :set_cat, only: %i[show edit update destroy]
+  before_action :set_cat, only: %i[show blog_list edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy]
   before_action :check_user, only: %i[edit update destroy]
 
@@ -23,7 +23,11 @@ class CatsController < ApplicationController
   end
 
   def show
-    @blogs = @cat.blogs.all
+    @blogs = @cat.blogs.all.order(created_at: :desc).limit(3)
+  end
+
+  def blog_list
+    @pagy, @blogs = pagy(@cat.blogs.all.order(created_at: :desc))
   end
 
   def confirm

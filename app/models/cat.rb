@@ -6,6 +6,6 @@ class Cat < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def self.ransackable_attributes(auth_object = nil)
-    ["breed_id"]
+    %w[name breed_id]
   end
 end
