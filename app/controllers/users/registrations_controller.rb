@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :authenticate_scope!, only: %i[edit edit_password update update_password destroy]
   prepend_before_action :set_minimum_password_length, only: %i[new edit edit_password]
+  before_action :check_user_role, only: %i[update update_password destroy]
 
   def edit_password
   end
@@ -35,5 +36,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     user_path(current_user)
+  end
+
+  def check_user_role
+    redirect_to root_path, alert: t("not_edit_guest_user") if resource.role == "guest"
   end
 end

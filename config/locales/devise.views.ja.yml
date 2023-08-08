@@ -151,3 +151,7 @@ ja:
         one: エラーが発生したため %{resource} は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
   not_authorized: アクセス権限がありません。
+  guest_signed_in: ゲストユーザーとしてログインしました。
+  guest_admin_signed_in: ゲスト管理者としてログインしました。
+  not_edit_guest_user: ゲストユーザーの編集・削除はできません。
+  not_edit_guest_password: ゲストユーザーのパスワード再設定はできません。
