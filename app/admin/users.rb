@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :introduction, :image, :role, :sign_in_count, :last_sign_in_at, :created_at, :updated_at
+  permit_params :name, :email, :introduction, :image, :role, :sign_in_count, :last_sign_in_at, :created_at, :updated_at, :is_deleted, :deleted_at
 
   # 一覧ページ
   index do
@@ -9,6 +9,7 @@ ActiveAdmin.register User do
     column :email
     column :role, :text, &:role_i18n
     column :last_sign_in_at
+    column :is_deleted
     column :created_at
     actions
   end
@@ -25,6 +26,8 @@ ActiveAdmin.register User do
       row :role, :text, &:role_i18n
       row :last_sign_in_at
       row :sign_in_count
+      row :is_deleted
+      row :deleted_at
       row :created_at
       row :updated_at
     end
@@ -37,6 +40,7 @@ ActiveAdmin.register User do
   filter :role, as: :select, collection: User.roles_i18n.invert.map { |k, v| [k, User.roles[v]] }
   filter :last_sign_in_at
   filter :sign_in_count
+  filter :is_deleted
   filter :created_at
 
   # 新規作成/編集ページ
@@ -50,6 +54,7 @@ ActiveAdmin.register User do
       f.input :role, as: :select, collection: User.roles_i18n.invert
       f.input :password
       f.input :password_confirmation
+      f.input :is_deleted
     end
     f.actions
   end

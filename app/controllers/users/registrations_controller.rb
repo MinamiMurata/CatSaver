@@ -37,8 +37,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     user_path(current_user)
   end
-
-  def check_user_role
-    redirect_to root_path, alert: t("not_edit_guest_user") if resource.role == "guest"
-  end
 end

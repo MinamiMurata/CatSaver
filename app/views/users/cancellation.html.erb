@@ -1,0 +1,12 @@
+<h3>退会手続き</h3>
+
+<p>
+  退会手続きをされますと、会員限定のサービスをご利用いただけなくなります。<br>
+  再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
+  尚、これまでに投稿された体験記・猫の情報は削除されませんので、<br>
+  削除を希望される場合は、あらかじめご自身で削除いただいてから退会のお手続きをお願いいたします。<br>
+  本当に退会してよろしいですか？
+</p>
+
+<%= link_to "退会しない", user_path(current_user) %>
+<%= link_to "退会する", withdrawal_user_path, data: { confirm: t('.are_you_sure'), turbo_confirm: t('.are_you_sure') }, method: :patch %>
