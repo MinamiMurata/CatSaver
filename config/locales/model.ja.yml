@@ -27,6 +27,8 @@ ja:
         email: メールアドレス
         role: 権限
         image: 画像
+        is_deleted: 退会済フラグ
+        deleted_at: 退会日
       cat:
         name: 名前
         introduction: 紹介文

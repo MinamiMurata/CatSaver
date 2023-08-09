@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "users/registrations", passwords: "users/passwords" }
   resources :users, only: :show do
-    member { get :blog_list }
+    member do
+      get :blog_list
+      get :cancellation
+      patch :withdrawal
+    end
   end
   devise_scope :user do
     get "users/:id/edit_password", to: "users/registrations#edit_password", as: "edit_password"

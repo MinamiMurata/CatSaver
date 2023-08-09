@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def check_user_role
+    redirect_to root_path, alert: t("not_edit_guest_user") if current_user.role == "guest"
+  end
 end

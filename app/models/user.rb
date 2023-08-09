@@ -2,8 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
   enum role: { general: 0, admin: 1, guest: 2 }
-  has_many :blogs
-  has_many :cats
+  has_many :blogs, dependent: :destroy
+  has_many :cats, dependent: :destroy
   mount_uploader :image, ImageUploader
 
   def update_without_password(params)
@@ -32,7 +32,11 @@ class User < ApplicationRecord
     end
   end
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
-    %w[name email role last_sign_in_at sign_in_count created_at]
+    %w[name email role last_sign_in_at sign_in_count created_at is_deleted]
   end
 end
