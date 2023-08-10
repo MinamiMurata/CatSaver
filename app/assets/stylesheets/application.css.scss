@@ -13,6 +13,20 @@
  *= require_tree .
  *= require_self
  */
+@import "font-awesome";
+
+body {
+  margin: 0;
+  background-image: url("pink_paws.png");
+}
+
+.column {
+  background-color: #fff;
+}
+
+.alert {
+  color: #008b8b;
+}
 
 .main_icon {
   width: 100px;

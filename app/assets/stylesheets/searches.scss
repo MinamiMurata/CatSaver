@@ -4,6 +4,7 @@
   margin: 0 auto;
   border: 1px solid #ccc;
   margin-top: 10px;
+  padding: 16px 0 0 0;
   cursor: pointer;
 }
 
@@ -92,4 +93,16 @@
 /* ChatGpt結果表示書式 */
 .ChatGpt_result {
   white-space: pre;
+}
+
+.is-light-green {
+  background-color: #9cc !important;
+  color: #fff !important;
+  border: none !important;
+  font-size: 1.2em !important;
+}
+
+.is-pink {
+  @extend .is-light-green;
+  background-color: #fbb !important;
 }

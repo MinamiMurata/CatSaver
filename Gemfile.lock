@@ -129,6 +129,8 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
+    font-awesome-sass (6.4.2)
+      sassc (~> 2.0)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -339,6 +341,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   enum_help
+  font-awesome-sass
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)

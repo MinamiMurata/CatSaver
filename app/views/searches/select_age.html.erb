@@ -8,7 +8,7 @@
     <strong><%= form.label :age_range %></strong>
     <%= form.select :age_range, @age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: "選択してください" %>
   </div>
-<%= form.submit '次へ', name: nil %>
+<%= form.submit '次へ', name: nil, class: "button is-fullwidth is-light-green is-rounded mt-6" %>
 <% end %>
 
-<%= link_to '戻る', 'javascript:history.back()' %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>
