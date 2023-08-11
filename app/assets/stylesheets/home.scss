@@ -25,13 +25,14 @@
   background-color: #fafafa;
   padding: 3em 2em 2em;
   position: relative;
-  border: 1px solid #00608d;
+  border: 1px solid #5ab9c1;
 }
 .guide-box .box-title {
-  background-color: #00608d;
+  background-color: #5ab9c1;
   color: #fff;
   padding: 7px 10px;
   position: absolute;
+  font-weight: bold;
   top: -10px;
   left: 20px;
 }
@@ -39,13 +40,14 @@
 .guide-box2 {
   @extend .guide-box;
   background-color: #fff9f9;
-  border: 1px solid #eb6ea0;
+  border: 1px solid #ffb6c1;
 }
 .guide-box2 .box-title {
-  background-color: #eb6ea0;
+  background-color: #ffb6c1;
   color: #fff;
   padding: 7px 10px;
   position: absolute;
+  font-weight: bold;
   top: -10px;
   left: 20px;
 }

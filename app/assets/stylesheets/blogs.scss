@@ -1,3 +1,19 @@
+/* 体験記index */
+.index_icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.txt-limit {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 体験記投稿 */
 .btn_detail {
   display: inline-block;
   position: relative;

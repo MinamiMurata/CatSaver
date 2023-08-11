@@ -24,7 +24,7 @@
   top: 0;
   bottom: 0;
   margin: auto 0;
-  background-color: #9cc;
+  background-color: #88bfbf;
   width: 20px;
   height: 4px;
   transition: all 0.3s;
@@ -92,17 +92,6 @@
 
 /* ChatGpt結果表示書式 */
 .ChatGpt_result {
-  white-space: pre;
-}
-
-.is-light-green {
-  background-color: #9cc !important;
-  color: #fff !important;
-  border: none !important;
-  font-size: 1.2em !important;
-}
-
-.is-pink {
-  @extend .is-light-green;
-  background-color: #fbb !important;
+  white-space: pre-wrap;
+  word-break: break-all;
 }

@@ -9,7 +9,7 @@
     <%= form.select :breed_name, @breeds.map{|b|[b.name, b.name]}, include_blank: "選択してください" %>
   </div>
 
-<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-rounded mt-6"  %>
+<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-medium is-rounded mt-6"  %>
 <% end %>
 
 <%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>

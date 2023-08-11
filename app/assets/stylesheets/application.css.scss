@@ -34,3 +34,14 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.is-aqua-green {
+  background-color: #88bfbf !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.is-pink {
+  @extend .is-aqua-green;
+  background-color: #fbb !important;
+}
