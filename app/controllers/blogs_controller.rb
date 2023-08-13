@@ -55,7 +55,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to blogs_path, notice: t("notice.destroy")
+    redirect_to user_path(current_user), notice: t("notice.destroy")
   end
 
   def get_details

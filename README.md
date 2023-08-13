@@ -29,7 +29,9 @@ $ git clone git@github.com:MinamiMurata/CatSaver.git
 $ cd CatSaver
 $ bundle install
 $ yarn install
-$ rails db:create && rails db:migrate
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
 $ rails s
 ```
 
@@ -43,7 +45,7 @@ https://docs.google.com/spreadsheets/d/1Dv-C76zhcnrZLJFD1tw77y_CUSpnhz7eRJjTkrpY
 
 ## ワイヤーフレーム
 
-https://cacoo.com/diagrams/D42l1y0xVqmNSMRr/D14D0
+https://cacoo.com/diagrams/6i0Xpy2MyIPyQXiu/46AE5
 
 ## ER 図
 

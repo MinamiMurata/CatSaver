@@ -6,6 +6,13 @@
   object-fit: cover;
 }
 
+.index_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 3%;
+  object-fit: cover;
+}
+
 .txt-limit {
   width: 100%;
   white-space: nowrap;
@@ -40,4 +47,9 @@
 .btn_detail input:checked + label {
   background: #09c;
   color: #fff;
+}
+
+/* ユーザー・猫の体験記リスト */
+.border {
+  border-top: 1px solid rgba(219, 219, 219, 0.5);
 }

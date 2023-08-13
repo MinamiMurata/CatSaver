@@ -1,73 +1,145 @@
-<h3><%= @user.name %>さんのページ</h3>
-
-<div>
-  <% if @user.image.present? %>
-    <%= image_tag @user.image.url, class: "main_icon" %>
-  <% else %>
-    <%= image_tag asset_path('user_icon.jpg'), class: "main_icon" %>
-  <% end %>
+<div class="columns m-4">
+  <div class="column is-narrow">
+    <%= link_to user_path(@user) do %>
+      <% if @user.image.present? %>
+        <%= image_tag @user.image.url, class: "main_icon" %>
+      <% else %>
+        <%= image_tag asset_path('user_icon.jpg'), class: "main_icon" %>
+      <% end %>
+    <% end %>
+    <p class="title is-5 my-2 mx-4"><%= @user.name %></p>
+  </div>
+  <div class="column m-4">
+    <p><%= @user.introduction %></p>
+  </div>
 </div>
-<h3>ユーザー名：<%= @user.name %></h3>
 
-<h3>プロフィール</h3>
-<%= @user.introduction %>
-
-  <div class="user-edit">
-    <% if @user == current_user %>
-        <%= link_to "アカウント情報編集", edit_user_registration_path, class: "user-edit-btn" %>
-        <%= link_to "パスワード変更", edit_password_path, class: "user-edit-btn" %>
-        <%= link_to '猫の登録', new_cat_path %>
+<% if @user == current_user %>
+  <div class="buttons mb-4">
+    <%= link_to edit_user_registration_path, class: "button ml-5" do %>
+      <span class="icon"><i class="fas fa-user-pen"></i></span>
+      <span>アカウント情報編集</span>
+    <% end %>
+    <%= link_to edit_password_path, class: "button ml-4" do %>
+      <span class="icon"><i class="fas fa-lock"></i></span>
+      <span>パスワード変更</span>
     <% end %>
   </div>
-
-<table>
-  <tr>
-    <th>名前</th>
-    <th>猫種</th>
-  </tr>
-
-<% @cats.each do |cat| %>
-  <tr>
-    <td><%= cat.name %></td>
-    <td><%= cat.breed.name %></td>
-    <td><%= link_to '確認', cat_path(cat.id) %></td>
-    <% if cat.user == current_user %>
-      <td><%= link_to '編集', edit_cat_path(cat.id) %></td>
-      <td><%= link_to '削除', cat_path(cat.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
-    <% end %>
-  </tr>
 <% end %>
-</table>
+
+<% if @user == current_user %>
+  <div class="align-right m-5">
+    <%= link_to new_cat_path, class: "button" do %>
+      <span class="icon"><i class="fas fa-cat"></i></span>
+      <span>猫の登録</span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="box-parent">
+<% @cats.each do |cat| %>
+  <div class="box-child">
+    <div class="card card-cat">
+      <%= link_to cat_path(cat.id) do %>
+        <div class="card-content align-center">
+            <% if cat.image.present? %>
+              <%= image_tag cat.image.url, class: "cat_icon" %>
+            <% else %>
+              <%= image_tag asset_path('cat_icon.jpg'), class: "cat_icon" %>
+            <% end %>
+        </div>
+      <% end %>
+      <div class="card-content">
+        <%= link_to cat_path(cat.id) do %>
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-5 is-spaced"><%= cat.name %></p>
+              <p class="subtitle is-6"><%= cat.breed.name %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if cat.user == current_user %>
+          <div class="content mt-4">
+            <%= link_to edit_cat_path(cat.id), class: "button is-small" do %>
+              <span class="icon"><i class="far fa-pen-to-square"></i></span>
+              <span>編集</span>
+            <% end %>
+            <%= link_to cat_path(cat.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }, class: "button is-small" do %>
+              <span class="icon"><i class="fas fa-trash-can"></i></span>
+              <span>削除</span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
 
 <% if user_signed_in? %>
-<div><%= link_to '体験記 新規登録', new_blog_path %></div>
-<% end %>
-
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>病名</th>
-    <th>年齢層</th>
-    <th>投稿者</th>
-    <th>投稿日</th>
-  </tr>
-
-<% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= blog.disease_name %></td>
-    <td><%= blog.age_range_i18n %></td>
-    <td><%= blog.user.name %></td>
-    <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
-    <td><%= link_to '確認', blog_path(blog.id) %></td>
-    <% if blog.user == current_user %>
-      <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
-      <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+  <div class="ml-5 mt-6 mb-5">
+    <%= link_to new_blog_path, class: "button is-link is-medium" do %>
+      <span class="icon"><i class="far fa-pen-to-square"></i></span>
+      <span>体験記 投稿</span>
     <% end %>
-  </tr>
+  </div>
 <% end %>
-</table>
 
-<%= link_to "#{@user.name}さんの体験記一覧へ", blog_list_user_path %>
+<p class="mx-4 font-lil-bigger"><%= link_to "#{@user.name}の体験記一覧へ ＞", blog_list_user_path %></p>
+
+<div class="columns">
+  <% @blogs.each do |blog| %>
+    <div class="column is-one-third">
+      <div class="card">
+        <%= link_to blog_path(blog.id) do %>
+          <div class="card-image image is-4by3 has-background-light">
+            <%= image_tag(blog.images.first) if blog.images.attached? %>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5"><%= blog.title %></p>
+              </div>
+            </div>
+            <div class="content">
+              <p class="txt-limit">
+                <%= blog.content %>
+              </p>
+              <p>
+                <% if blog.disease_name.present? %>
+                  <small>病名： <%= blog.disease_name %></small>
+                <% end %>
+                <% if blog.symptoms.present? %>
+                  <% blog.symptoms.each do |symptom| %>
+                    <div class="button is-small is-rounded is-static m-1"><%= symptom.detail %></div>
+                  <% end %>
+                <% end %>
+              </p>
+              <p>
+                <small><i class="far fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
+              </p>
+            </div>
+          </div>
+        <% end %>
+        <% if blog.user == current_user %>
+          <footer class="card-footer">
+            <div class="card-footer-item">
+              <%= link_to edit_blog_path(blog.id) do %>
+                <span class="icon"><i class="far fa-pen-to-square"></i></span>
+                <span>編集</span>
+              <% end %>
+            </div>
+            <div class="card-footer-item">
+                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } do %>
+                  <span class="icon"><i class="fas fa-trash-can"></i></span>
+                  <span>削除</span>
+                <% end %>
+            </div>
+          </footer>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>

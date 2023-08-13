@@ -36,8 +36,8 @@
             </p>
           </div>
         </div>
-        <div class="media-right image">
-          <%=  link_to image_tag(blog.images.first.variant(resize_to_limit: [128, 128])), blog_path(blog.id) if blog.images.attached? %>
+        <div class="media-right">
+          <%=  link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
         </div>
       </article>
     </div>

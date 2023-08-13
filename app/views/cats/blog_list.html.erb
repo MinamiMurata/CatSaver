@@ -1,22 +1,36 @@
-<h3 class="mb-5"><%= @cat.name %>の体験記一覧</h3>
+ <div class="align-right mx-5">
+  <%= link_to user_path(@cat.user) do %>
+    <% if @cat.user.image.present? %>
+      <%= image_tag @cat.user.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag asset_path('user_icon.jpg'), class: "user_icon" %>
+    <% end %>
+    <%= @cat.user.name %>
+  <% end %>
+</div>
 
+<div class="columns m-4">
+  <div class="column is-narrow">
+    <%= link_to cat_path(@cat) do %>
+      <% if @cat.image.present? %>
+        <%= image_tag @cat.image.url, class: "main_icon" %>
+      <% else %>
+        <%= image_tag asset_path('cat_icon.jpg'), class: "main_icon" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="column">
+    <span class="title is-4"><%= @cat.name %>の体験記一覧</span>
+    <p class="mt-2"><%= @cat.introduction %></p>
+  </div>
+</div>
+
+<p class="border mt-5"></p>
 <% if @pagy.vars[:count] > 0 %>
   <% @blogs.each do |blog| %>
-    <div class="box">
       <article class="media px-5">
         <div class="media-content">
           <div class="content">
-            <p>
-              <%= link_to user_path(blog.user) do %>
-                <% if blog.user.image.present? %>
-                  <%= image_tag blog.user.image.url, class: "index_icon" %>
-                <% else %>
-                  <%= image_tag asset_path('user_icon.jpg'), class: "index_icon" %>
-                <% end %>
-                <small><%= blog.user.name %></small>
-              <% end %>
-              <small class="ml-4"><i class="fa-regular fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
-            </p>
             <h4 class="mt-2"><%= link_to blog.title, blog_path(blog.id) %></h4>
             <p class="txt-limit">
               <%= blog.content %>
@@ -31,17 +45,36 @@
                 <% end %>
               <% end %>
             </p>
+            <p>
+              <small><i class="far fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
+            </p>
           </div>
         </div>
-        <div class="media-right image">
-          <%=  link_to image_tag(blog.images.first.variant(resize_to_limit: [128, 128])), blog_path(blog.id) if blog.images.attached? %>
+        <div class="media-right">
+          <div>
+            <% if blog.user == current_user %>
+              <div class="buttons are-small mb-4">
+                <%= link_to edit_blog_path(blog.id), class: "button" do %>
+                  <span class="icon"><i class="far fa-pen-to-square"></i></span>
+                  <span>編集</span>
+                <% end %>
+                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }, class: "button" do %>
+                  <span class="icon"><i class="fas fa-trash-can"></i></span>
+                  <span>削除</span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%=  link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
+          </div>
         </div>
       </article>
-    </div>
   <% end %>
 <% else %>
   <p>投稿されている体験記はありません。</p>
 <% end %>
+<p class="border mt-5"></p>
 
 <%== pagy_bulma_nav(@pagy) %>
 

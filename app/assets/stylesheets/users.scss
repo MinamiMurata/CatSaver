@@ -1,3 +1,28 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+/* 猫情報リスト */
+.cat_icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.box-parent {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+}
+.box-child {
+  height: auto;
+  margin: 0 auto;
+}
+
+.card-cat {
+  width: 250px;
+}
+
+/* 体験記リストへ */
+.font-lil-bigger {
+  font-size: 1.1rem;
+}
