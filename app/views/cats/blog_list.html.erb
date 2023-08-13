@@ -1,4 +1,4 @@
- <div class="align-right mx-5">
+<div class="align-right mx-5">
   <%= link_to user_path(@cat.user) do %>
     <% if @cat.user.image.present? %>
       <%= image_tag @cat.user.image.url, class: "user_icon" %>
@@ -9,7 +9,7 @@
   <% end %>
 </div>
 
-<div class="columns m-4">
+<div class="columns mx-4 my-2">
   <div class="column is-narrow">
     <%= link_to cat_path(@cat) do %>
       <% if @cat.image.present? %>

@@ -1,9 +1,8 @@
-<%= form_with(model: @cat, local: true ,url: choose_new_or_edit_about_cat ) do |form| %>
+<%= form_with(model: @cat, url: choose_new_or_edit_about_cat ) do |form| %>
   <% if @cat.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @cat.errors.count %>件のエラーがあります。</h2>
+      <h5 class="has-text-danger-dark"><%= @cat.errors.count %>件のエラーがあります。</h5>
       <ul>
-
       <% @cat.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -11,38 +10,68 @@
     </div>
   <% end %>
 
-  <div class="cat_name">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="columns m-4">
+    <div class="column is-narrow">
+      <div class="field">
+        <%= form.label :image, class: "label"%>
+        <% if @cat.image.present? %>
+        <label>
+          <%= image_tag @cat.image.url, class: "main_icon" %>
+          <%= form.check_box :remove_image %>削除
+        </label>
+        <% end %>
+        <div id="file-js" class="file is-small is-boxed has-name mt-4">
+          <label class="file-label">
+            <%= form.file_field :image, class: "file-input" %>
+            <span class="file-cta">
+              <span class="icon"><i class="fas fa-paw"></i>ファイルを選択</span>
+            </span>
+            <span class="file-name">選択されていません</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="column">
+      <div class="field">
+        <%= form.label :name, class: "label" %>
+        <div class="control">
+          <%= form.text_field :name, autofocus: true, class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :introduction, class: "label" %>
+        <div class="control">
+          <%= form.text_area :introduction, class: "textarea", rows: "10" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :birthday, class: "label" %>
+        <div class="control">
+          <%= form.date_field :birthday, class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :breed_name, class: "label" %>
+        <div class="select">
+          <%= form.select :breed_id, Breed.all.map{|b|[b.name, b.id]}, include_blank: "選択してください" %>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <div class="field">
-    <%= form.label :image %>
-    <% if @cat.image.present? %>
-    <p>現在登録されている画像</p>
-    <p>（削除する場合はチェックしてください。変更する場合は変更したい画像を選択してください。）</p>
-    <label>
-      <%= image_tag @cat.image.url, class: "main_icon" %>
-      <%= form.check_box :remove_image %>削除
-    </label>
-    <% end %><br>
-    <%= form.file_field :image %>
+  <div class="actions align-right">
+    <%= form.submit class: "button is-info m-5" %>
   </div>
-
-  <div class="cat_introduction">
-    <%= form.label :introduction %>
-    <%= form.text_field :introduction %>
-  </div>
-  <div class="cat_birthday">
-    <%= form.label :birthday %>
-    <%= form.date_field :birthday %>
-  </div>
-    <div class="cat_breed_name">
-    <%= form.label :breed_name %>
-    <%= form.select :breed_id, Breed.all.map{|b|[b.name, b.id]}, include_blank: "選択してください"%>
-  </div>
-
-  <%= form.submit %>
 <% end %>
 
-<%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded ml-4" %>
+
+<script>
+  const fileInput = document.querySelector('#file-js input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>

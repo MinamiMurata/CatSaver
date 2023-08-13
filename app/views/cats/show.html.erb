@@ -1,4 +1,4 @@
- <div class="align-right mx-5">
+<div class="align-right mx-5">
   <%= link_to user_path(@cat.user) do %>
     <% if @cat.user.image.present? %>
       <%= image_tag @cat.user.image.url, class: "user_icon" %>
@@ -9,7 +9,7 @@
   <% end %>
 </div>
 
-<div class="columns m-4">
+<div class="columns mx-4 my-2">
   <div class="column is-narrow">
     <%= link_to cat_path(@cat) do %>
       <% if @cat.image.present? %>
@@ -29,12 +29,12 @@
 
 <% if @cat.user == current_user %>
   <%= link_to edit_cat_path(@cat.id), class: "button ml-5" do %>
-    <span class="icon"><i class="fas fa-user-pen"></i></span>
+    <span class="icon"><i class="fas fa-cat"></i></span>
     <span>猫情報編集</span>
   <% end %>
 <% end %>
 
-<p class="mt-6 ml-4 font-lil-bigger"><%= link_to "#{@cat.name}の体験記一覧へ ＞", blog_list_cat_path %></p>
+<p class="mt-6 mr-5 align-right font-lil-bigger"><%= link_to "#{@cat.name}の体験記一覧へ", blog_list_cat_path %></p>
 
 <div class="columns">
   <% @blogs.each do |blog| %>
