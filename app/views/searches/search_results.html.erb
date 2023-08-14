@@ -1,9 +1,12 @@
-<h3>AIからの回答結果</h3>
+<p class="title is-4">あなたの回答と関連性のある情報はこちらです。</p>
+
+<h4>AIからの回答結果</h4>
   <div class="ChatGpt_result">
     <%= @result %>
   </div>
 
-<h3>検索した症状に関連する体験記一覧</h3>
+<h4 class="mt-6">検索した症状に関連する体験記一覧</h4>
+<% if @blogs.count > 0 %>
   <% @blogs.each do |blog| %>
     <div class="box">
       <article class="media px-5">
@@ -42,5 +45,8 @@
       </article>
     </div>
   <% end %>
+<% else %>
+  <p>大変申し訳ございませんが、検索した症状に関連する体験記は 0 件です。</p>
+<% end %>
 
 <%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>
