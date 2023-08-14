@@ -11,10 +11,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="has-navbar-fixed-top">
   <div class="content">
     <header class="header">
-      <nav class="navbar is-transparent py-2 px-4 is-white" role="navigation" aria-label="main navigation">
+      <nav class="navbar is-transparent py-2 px-4 is-white is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to "CatSaver", root_path, class: "navbar-item" %>
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
@@ -105,9 +105,7 @@
 
   <script>
     $(document).ready(function() {
-      // Check for click events on the navbar burger icon
       $(".navbar-burger").click(function() {
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
         $(".navbar-burger").toggleClass("is-active");
         $(".navbar-menu").toggleClass("is-active");
       });
