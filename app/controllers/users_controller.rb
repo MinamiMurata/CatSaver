@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :check_user_role, only: :withdrawal
 
   def show
-    @cats = @user.cats.all
+    @cats = @user.cats.all.order(created_at: :asc)
     @blogs = @user.blogs.all.order(created_at: :desc).limit(3)
   end
 

@@ -21,11 +21,20 @@
 }
 
 /* 体験記投稿 */
+.blog-attach-images {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.blog-attach-images span {
+  margin: 0 10px;
+}
+
 .btn_detail {
   display: inline-block;
   position: relative;
-  margin: 3px;
-  font-size: 0.5rem;
+  margin: 5px;
+  font-size: 0.7rem;
 }
 
 .btn_detail input {
@@ -52,4 +61,63 @@
 /* ユーザー・猫の体験記リスト */
 .border {
   border-top: 1px solid rgba(219, 219, 219, 0.5);
+}
+
+/* 体験記詳細画面 */
+.blog_cat_icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* メイン画像 */
+.blog-main-img {
+  overflow: hidden;
+  padding-top: 70%;
+  position: relative;
+}
+
+.blog-main-img img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+/* サブ画像 */
+.blog-image ul {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin: 0 !important;
+}
+.blog-image li {
+  list-style: none;
+  margin: 0 2%;
+}
+.blog-sub-img {
+  cursor: pointer;
+  padding-top: 10%;
+  position: relative;
+  width: 10%;
+}
+
+.blog-sub-img img {
+  border: 2px solid transparent;
+  border-radius: 10%;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  width: 100%;
+}
+
+.blog-sub-img.is_active img {
+  border: 2px solid #fbb;
 }

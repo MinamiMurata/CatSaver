@@ -1,22 +1,91 @@
-<h3><%= @blog.user.name %>さんの体験記詳細画面</h3>
-<p>猫名：<%= @blog.cat.name if @blog.cat.present? %></p>
-
-<p>タイトル：<%= @blog.title %></p>
-<p>
-  <% @blog.images.each do |image| %>
-    <%= image_tag(image.variant(resize_to_limit: [200, 200])) %>
+<div class="align-right mx-5">
+  <%= link_to user_path(@blog.user) do %>
+    <% if @blog.user.image.present? %>
+      <%= image_tag @blog.user.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag asset_path('user_icon.jpg'), class: "user_icon" %>
+    <% end %>
+    <%= @blog.user.name %>
   <% end %>
-</p>
-<p>本文：<%= @blog.content %></p>
-<p>病名：<%= @blog.disease_name %></p>
-<p>年齢層：<%= @blog.age_range_i18n %></p>
-<p>症状：
-  <% @blog.symptoms.each do |symptom| %>
-    #<%= symptom.detail %>
-  <% end %>
-</p>
+</div>
 
-<% if @blog.user == current_user %>
-  <%= link_to '編集', edit_blog_path(@blog) %> |
+<div class="align-right m-5">
+  <% if @blog.user == current_user %>
+    <%= link_to edit_blog_path(@blog), class: "button ml-5" do %>
+        <span class="icon"><i class="far fa-pen-to-square"></i></span>
+        <span>編集</span>
+    <% end %>
+  <% end %>
+</div>
+
+<% if @blog.cat.present? %>
+  <%= link_to cat_path(@blog.cat) do %>
+    <% if @blog.cat.image.present? %>
+      <%= image_tag @blog.cat.image.url, class: "blog_cat_icon" %>
+    <% else %>
+      <%= image_tag asset_path('cat_icon.jpg'), class: "blog_cat_icon" %>
+    <% end %>
+    <%= @blog.cat.name %>
+  <% end %>
 <% end %>
-<%= link_to '戻る', 'javascript:history.back()' %>
+
+<p>
+  <small><i class="far fa-calendar mr-1 mt-5"></i><%= @blog.created_at.strftime("%Y/%m/%d") %></small>
+</p>
+<div class="title is-4 mt-4"><%= @blog.title %></div>
+
+<% if @blog.images.present? %>
+  <div class="blog-image">
+    <figure class="blog-main-img">
+      <%= image_tag @blog.images.first %>
+    </figure>
+    <ul>
+      <% @blog.images.each do |image| %>
+        <li class="blog-sub-img">
+          <%= image_tag image %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p class="content is-medium my-6 mx-4"><%= @blog.content %></p>
+<p class="border mt-6"></p>
+
+<% if @blog.age_range.present? %>
+  <p class="m-5"><%= "年齢層：#{@blog.age_range_i18n}" %></p>
+<% end %>
+
+<% if @blog.disease_name.present? %>
+  <p class="m-5"><%= "病名：#{@blog.disease_name}" %></p>
+<% end %>
+
+<% if @blog.symptoms.present? %>
+  <p class="m-5">症状：
+    <% @blog.symptoms.each do |symptom| %>
+      <span class="button is-small is-rounded is-static m-1"><%= symptom.detail %></span>
+    <% end %>
+  </p>
+<% end %>
+
+<div class="align-right m-5">
+  <%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>
+</div>
+
+<script>
+  $(window).on('load', function () {
+    $('.blog-sub-img:first-of-type').addClass('is_active');
+  });
+  $(function () {
+    $('.blog-sub-img img').on('click', function () {
+      let img = $(this).attr('src');
+      $('.blog-sub-img').removeClass('is_active');
+      $(this).parent().addClass('is_active');
+      $('.blog-main-img img').fadeOut(50, function () {
+        $(this).attr('src', img).on('load', function () {
+          $(this).fadeIn();
+        });
+      });
+    });
+  });
+</script>

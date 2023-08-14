@@ -1,9 +1,19 @@
+<div class="align-right mx-5">
+  <%= link_to user_path(current_user) do %>
+    <% if current_user.image.present? %>
+      <%= image_tag current_user.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag asset_path('user_icon.jpg'), class: "user_icon" %>
+    <% end %>
+    <%= current_user.name %>
+  <% end %>
+</div>
+
 <%= form_with(model: @blog, url: choose_new_or_edit ) do |form| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h5 class="has-text-danger-dark"><%= @blog.errors.count %>件のエラーがあります。</h5>
       <ul>
-
       <% @blog.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -11,49 +21,71 @@
     </div>
   <% end %>
 
-  <div class="blog_cat_name">
-    <%= form.label :cat_name %>
-    <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, include_blank: true %>
-  </div>
-  <div class="blog_title">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field">
+    <%= form.label "誰の体験記ですか？", class: "label" %>
+    <div class="select">
+      <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, include_blank: true %>
+    </div>
   </div>
 
+  <div class="field mt-5">
+    <%= form.label :title, class: "label" %>
+    <%= form.text_field :title, class: "input" %>
+  </div>
 
-  <div>
-    <%= form.label :image %>
+  <div class="field mt-5">
+    <%= form.label :image, class: "label" %>
     <p>（複数選択が可能です）</p>
-    <%= form.file_field :images, direct_upload: true, multiple: true %>
-  </div>
-  <% if @blog.images.attached? %>
-    <p>現在登録されている画像（削除するものはチェックしてください）</p>
-    <% @blog.images.each do |image| %>
-      <%= form.check_box :image_ids, {multiple: true}, image.id, false %>
-      <label for="blog_image_ids_<%= image.id %>" >
-        <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+    <div id="file-js" class="file is-small has-name m-4">
+      <label class="file-label">
+        <%= form.file_field :images, direct_upload: true, multiple: true, class: "file-input" %>
+        <span class="file-cta">
+          <span class="file-icon"><i class="far fa-image"></i></span>
+          <span class="file-label">ファイルを選択</span>
+        </span>
+        <span class="file-name">選択されていません</span>
       </label>
+    </div>
+    <% if @blog.images.attached? %>
+      <div class="blog-attach-images">
+        <% @blog.images.each do |image| %>
+          <label for="blog_image_ids_<%= image.id %>" >
+            <span>
+              <%= form.check_box :image_ids, {multiple: true}, image.id, false %>削除<br>
+              <%= image_tag image.variant(resize_to_limit: [275, 275]) %>
+            </span>
+          </label>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
-
-  <div class="blog_content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <div class="blog_disease_name">
-    <%= form.label :disease_name %>
-    <%= form.text_field :disease_name %>
-  </div>
-  <div class="blog_age_range">
-    <%= form.label :age_range %>
-    <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: true %>
   </div>
 
-  <div class="blog_symptom">
-    <%= form.label :symptom %><br>
+  <div class="field mt-5">
+    <%= form.label :content, class: "label" %>
+    <%= form.text_area :content, class: "textarea", rows: "20"%>
+  </div>
+
+  <p class="border mt-6"></p>
+
+  <div class="field m-5">
+    <%= form.label :age_range, class: "label" %>
+    <div class="select">
+      <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: true %>
+    </div>
+  </div>
+
+  <div class="field m-5">
+    <%= form.label :disease_name, class: "label" %>
+    <%= form.text_field :disease_name, class: "input" %>
+  </div>
+
+  <div class="field m-5">
+    <%= form.label :symptom, class: "label" %>
     <p>カテゴリーを選択すると詳細が表示されます。（複数カテゴリー・詳細の選択が可能です）</p>
-    <%= form.select :symptom_category, Symptom.categories.keys.map {|k| [I18n.t("enums.symptom.category.#{k}"), k]}, { include_blank: "選択してください" }, id: "input-select" %>
-    <div>
+    <div class="select">
+      <%= form.select :symptom_category, Symptom.categories.keys.map {|k| [I18n.t("enums.symptom.category.#{k}"), k]}, { include_blank: "選択してください" }, id: "input-select" %>
+    </div>
+    <div class="m-4">
       <% @blog.symptoms.each do |symptom| %>
         <div class="btn_detail">
           <%= form.check_box :symptom_ids, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:id] %>
@@ -64,10 +96,22 @@
     <div class="js-details"></div>
   </div>
 
-  <%= form.submit %>
+  <div class="actions align-right">
+    <%= form.submit class: "button is-info m-5" %>
+  </div>
 <% end %>
 
 <%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>
+
+<script>
+  const fileInput = document.querySelector('#file-js input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>
 
 <script>
   document.addEventListener("turbolinks:load", function() {

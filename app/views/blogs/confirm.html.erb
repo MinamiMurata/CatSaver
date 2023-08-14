@@ -1,4 +1,4 @@
-<h3>以下の内容で、投稿しますか？</h3>
+<h4>以下の内容で、投稿しますか？</h4>
 
 <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
   <%= form.hidden_field :cat_id %>
@@ -7,30 +7,45 @@
     <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
   <% end %>
   <%= form.hidden_field :content %>
-  <%= form.hidden_field :disease_name %>
   <%= form.hidden_field :age_range %>
+  <%= form.hidden_field :disease_name %>
   <% @blog.symptoms.each do |symptom| %>
     <%= form.hidden_field :symptom_ids, multiple: true, value: symptom.id %>
   <% end %>
 
-  <p><%= form.label :cat_name %>：<%= @blog.cat.name if @blog.cat.present? %></p>
-  <p><%= form.label :title %>：<%= @blog.title %></p>
-  <p><%= form.label :image %>：
+  <p class="label mt-6 ml-4"><%= form.label :cat_name %></p>
+  <p class="ml-4"><%= @blog.cat.name if @blog.cat.present? %></p>
+
+  <p class="label mt-6 ml-4"><%= form.label :title %></p>
+  <p class="ml-4"><%= @blog.title %></p>
+
+  <p class="label mt-6 ml-4"><%= form.label :image %></p>
+  <p class="ml-4">
     <% @blog.images.each do |image| %>
-      <%= image_tag(image.variant(resize_to_limit: [200, 200])) %>
+      <%= image_tag(image.variant(resize_to_limit: [275, 275])) %>
     <% end %>
   </p>
-  <p><%= form.label :content %>：<%= @blog.content %></p>
-  <p><%= form.label :disease_name %>：<%= @blog.disease_name %></p>
-  <p><%= form.label :age_range %>：<%= @blog.age_range_i18n %></p>
-  <p><%= form.label :symptom %>：
+
+  <p class="label mt-6 ml-4"><%= form.label :content %></p>
+  <p class="ml-4"><%= @blog.content %></p>
+
+  <p class="label mt-6 ml-4"><%= form.label :age_range %></p>
+  <p class="ml-4"><%= @blog.age_range_i18n %></p>
+
+  <p class="label mt-6 ml-4"><%= form.label :disease_name %></p>
+  <p class="ml-4"><%= @blog.disease_name %></p>
+
+  <p class="label mt-6 ml-4"><%= form.label :symptom %></p>
+  <p class="ml-4">
     <% @blog.symptoms.each do |symptom| %>
-      #<%= symptom.detail %>
+      <span class="button is-small is-rounded is-static m-1"><%= symptom.detail %></span>
     <% end %>
   </p>
 
-  <%= form.submit %>
+  <div class="actions align-right">
+    <%= form.submit class: "button is-info m-5" %>
+  </div>
 
-  <%= form.submit '戻る', name: 'back' %>
+  <%= form.submit '戻る', name: 'back', class: "button is-light is-rounded ml-4" %>
 
 <% end %>
