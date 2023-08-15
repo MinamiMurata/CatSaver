@@ -1,5 +1,15 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :introduction, :image, :role, :sign_in_count, :last_sign_in_at, :created_at, :updated_at, :is_deleted, :deleted_at
+  permit_params :name,
+                :email,
+                :introduction,
+                :image,
+                :role,
+                :sign_in_count,
+                :last_sign_in_at,
+                :created_at,
+                :updated_at,
+                :is_deleted,
+                :deleted_at
 
   # 一覧ページ
   index do
@@ -20,6 +30,9 @@ ActiveAdmin.register User do
       row :name
       row :email
       row :introduction
+      row "猫数" do |user|
+        user.cats.count
+      end
       row :image do
         image_tag(user.image.url, class: "main_icon") if user.image?
       end

@@ -23,7 +23,7 @@
   <div class="column m-4">
     <p>生年月日：<%= @cat.birthday.strftime("%Y/%m/%d") if @cat.birthday %></p>
     <p>猫種名：<%= @cat.breed.name %></p>
-    <p class="mt-5"><%= @cat.introduction %></p>
+    <p class="mt-5 pre-wrap"><%= @cat.introduction %></p>
   </div>
 </div>
 
