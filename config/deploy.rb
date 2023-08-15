@@ -47,6 +47,8 @@ set :rbenv_type, :system
 set :log_level, :info
 
 namespace :deploy do
+  before ":publishing", "db:seed_fu"
+
   desc "Restart application"
   task :restart do
     invoke "unicorn:restart"
@@ -74,12 +76,6 @@ namespace :deploy do
     end
   end
 
-  task :apply_seedfu do
-    on primary :db do
-      invoke "seed_fu:apply"
-    end
-  end
-
   after :publishing, :restart
 
   after :restart, :clear_cache do
@@ -87,5 +83,3 @@ namespace :deploy do
     end
   end
 end
-
-after "deploy:migrating", "deploy:apply_seedfu"
