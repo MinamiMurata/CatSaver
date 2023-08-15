@@ -14,7 +14,6 @@
  *= require_self
  */
 @import "font-awesome";
-@import "bulma/bulma.sass";
 
 body {
   margin: 0;
@@ -54,8 +53,4 @@ body {
 .is-pink {
   @extend .is-aqua-green;
   background-color: #fbb !important;
-}
-
-.footer {
-  background-color: #fff !important;
 }
