@@ -1,29 +1,34 @@
-<h2><%= t('.sign_in') %></h2>
+<div class="box">
+  <h2><%= t('.sign_in') %></h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email, class: "label"%>
+      <div class="control">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "メールアドレスを入力してください" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, class: "label" %>
+      <div class="control">
+        <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "******" %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit t('.sign_in'), class: "button is-pink" %>
     </div>
   <% end %>
+  <div class="mt-4"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></div>
+  <div class="mt-2"><%= link_to 'ゲスト管理者ログイン', users_guest_admin_sign_in_path, method: :post %></div>
 
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
-  </div>
-<% end %>
-
-<div><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></div>
-<div><%= link_to 'ゲスト管理者ログイン', users_guest_admin_sign_in_path, method: :post %></div>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

@@ -4,6 +4,7 @@
   margin: 0 auto;
   border: 1px solid #ccc;
   margin-top: 10px;
+  padding: 16px 0 0 0;
   cursor: pointer;
 }
 
@@ -23,7 +24,7 @@
   top: 0;
   bottom: 0;
   margin: auto 0;
-  background-color: #9cc;
+  background-color: #88bfbf;
   width: 20px;
   height: 4px;
   transition: all 0.3s;
@@ -89,7 +90,60 @@
   color: #fff;
 }
 
+/* ラジオボタン */
+.radio-area {
+  position: relative;
+  margin: 0.7rem 15%;
+  padding: 0.7rem;
+  z-index: 0;
+}
+
+.radio-area input[type="radio"] {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-top: -4px;
+  margin-left: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid #fff;
+  appearance: none;
+  vertical-align: middle;
+  transition: 0.3s;
+}
+
+.radio-area label {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.radio-area input[type="radio"]:checked {
+  background-color: #fbb;
+}
+
+.radio-area input[type="radio"]::before {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: #eee;
+  content: "";
+  z-index: -1;
+}
+
+.radio-area input[type="radio"]:checked::before {
+  background-color: #fbb;
+}
+
+.radio-area input[type="radio"]:checked + label {
+  color: #fff;
+}
+
 /* ChatGpt結果表示書式 */
 .ChatGpt_result {
-  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
 }

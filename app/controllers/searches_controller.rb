@@ -59,9 +59,5 @@ class SearchesController < ApplicationController
       )
 
     @result = response.dig("choices", 0, "message", "content")
-
-    session[:symptom_details] = nil
-    session[:age_range] = nil
-    session[:breed_name] = nil
   end
 end

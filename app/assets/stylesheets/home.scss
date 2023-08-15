@@ -1,3 +1,48 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.main_visual {
+  position: relative;
+}
+.main_visual img {
+  width: 100%;
+  height: auto;
+}
+
+.main_visual p {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  margin-right: 10px;
+  text-shadow: 1px 1px 3px #fff;
+  font-weight: bold;
+}
+
+.guide-box {
+  margin: 5em 1em;
+  background-color: #fafafa;
+  padding: 3em 2em 2em;
+  position: relative;
+  border: 1px solid #5ab9c1;
+}
+.guide-box .box-title {
+  background-color: #5ab9c1;
+  color: #fff;
+  padding: 7px 10px;
+  position: absolute;
+  font-weight: bold;
+  top: -10px;
+  left: 20px;
+}
+
+.guide-box2 {
+  @extend .guide-box;
+  background-color: #fff9f9;
+  border: 1px solid #ffb6c1;
+}
+.guide-box2 .box-title {
+  background-color: #ffb6c1;
+  color: #fff;
+  padding: 7px 10px;
+  position: absolute;
+  font-weight: bold;
+  top: -10px;
+  left: 20px;
+}

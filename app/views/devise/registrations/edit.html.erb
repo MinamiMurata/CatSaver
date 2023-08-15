@@ -1,45 +1,69 @@
-<h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
+<h4><%= t('.title', resource: resource_name.to_s.humanize) %></h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  <div class="columns m-4">
+    <div class="column is-narrow">
+      <div class="field">
+        <%= f.label :image, class: "label"%>
+        <% if @user.image.present? %>
+        <label>
+          <%= image_tag @user.image.url, class: "main_icon" %>
+          <%= f.check_box :remove_image %>削除
+        </label>
+        <% end %>
+        <div id="file-js" class="file is-small is-boxed has-name mt-4">
+          <label class="file-label">
+            <%= f.file_field :image, class: "file-input" %>
+            <span class="file-cta">
+              <span class="icon"><i class="far fa-face-smile"></i>ファイルを選択</span>
+            </span>
+            <span class="file-name">選択されていません</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="field">
+        <%= f.label :name, class: "label" %>
+        <div class="control">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :introduction, class: "label" %>
+        <div class="control">
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "textarea", rows: "10" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :email, class: "label" %>
+        <div class="control">
+          <%= f.email_field :email, autocomplete: "email", class: "input" %>
+        </div>
+      </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :image %>
-    <% if @user.image.present? %>
-    <p>現在登録されている画像</p>
-    <p>（削除する場合はチェックしてください。変更する場合は変更したい画像を選択してください。）</p>
-    <label>
-      <%= image_tag @user.image.url, class: "main_icon" %>
-      <%= f.check_box :remove_image %>削除
-    </label>
-    <% end %><br>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= f.label :introduction %><br />
-    <%= f.text_field :introduction, autocomplete: "introduction" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit t('.update') %>
+  <div class="actions align-right">
+    <%= f.submit t('.update'), class: "button is-info m-5" %>
   </div>
 <% end %>
 
-<%= link_to t('.cancel_my_account'), cancellation_user_path(current_user) %></div>
+<p class="align-right mr-5"><%= link_to t('.cancel_my_account'), cancellation_user_path(current_user) %></p>
 
-<%= link_to t('devise.shared.links.back'), user_path(current_user.id) %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-2" %>
+
+<script>
+  const fileInput = document.querySelector('#file-js input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>

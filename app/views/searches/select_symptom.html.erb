@@ -1,3 +1,5 @@
+<progress class="progress is-link" value="30" max="100">30%</progress>
+
 <h3>症状の選択</h3>
 
 <%= form_with url: select_age_path, method: :get do |form| %>
@@ -21,10 +23,10 @@
     <% end %>
   </div>
   
-  <%= form.submit '次へ', name: nil %>
+  <%= form.submit '次へ', name: nil, class: "button is-fullwidth is-aqua-green is-medium is-rounded mt-5" %>
 <% end %>
 
-<%= link_to '戻る', 'javascript:history.back()' %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>
 
 <script>
   document.addEventListener("turbolinks:load", function() {

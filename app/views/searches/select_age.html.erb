@@ -1,14 +1,23 @@
+<progress class="progress is-link" value="60" max="100">60%</progress>
+
 <h3>年齢層の選択</h3>
 
 <%= form_with url: select_breed_path, method: :get, local: true do |form| %>
 
   <div class="field">
     <p>該当する項目を選んで「次へ」を押してください。<br>
-    （年齢で絞り込みを行わない場合は、何も選択せずに「次へ」進んでください。）</p>
-    <strong><%= form.label :age_range %></strong>
-    <%= form.select :age_range, @age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: "選択してください" %>
+    （年齢で絞り込みを行わない場合は、何も選択せずに「次へ」で進んでください。）</p>
+    <%#= form.select :age_range, @age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: "選択してください" %>
+    <div class="radio-group">
+      <% @age_ranges.keys.each do |k| %>
+          <div class="radio-area">
+            <%= form.radio_button :age_range, k %>
+            <%= form.label :age_range, I18n.t("enums.blog.age_range.#{k}") %>
+          </div>
+      <% end %>
+    </div>
   </div>
-<%= form.submit '次へ', name: nil %>
+<%= form.submit '次へ', name: nil, class: "button is-fullwidth is-aqua-green is-medium is-rounded mt-6" %>
 <% end %>
 
-<%= link_to '戻る', 'javascript:history.back()' %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>

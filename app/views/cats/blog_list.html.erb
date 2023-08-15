@@ -1,32 +1,83 @@
-<h3><%= @cat.name %>の体験記一覧</h3>
-
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>病名</th>
-    <th>年齢層</th>
-    <th>投稿者</th>
-    <th>投稿日</th>
-  </tr>
-
-<% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= blog.disease_name %></td>
-    <td><%= blog.age_range_i18n %></td>
-    <td><%= blog.user.name %></td>
-    <td><%= blog.created_at.strftime("%Y/%m/%d") %></td>
-    <td><%= link_to '確認', blog_path(blog.id) %></td>
-    <% if blog.user == current_user %>
-      <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
-      <td><%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+<div class="align-right mx-5">
+  <%= link_to user_path(@cat.user) do %>
+    <% if @cat.user.image.present? %>
+      <%= image_tag @cat.user.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag asset_path('user_icon.jpg'), class: "user_icon" %>
     <% end %>
-  </tr>
+    <%= @cat.user.name %>
+  <% end %>
+</div>
+
+<div class="columns mx-4 my-2">
+  <div class="column is-narrow">
+    <%= link_to cat_path(@cat) do %>
+      <% if @cat.image.present? %>
+        <%= image_tag @cat.image.url, class: "main_icon" %>
+      <% else %>
+        <%= image_tag asset_path('cat_icon.jpg'), class: "main_icon" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="column">
+    <span class="title is-4"><%= @cat.name %>の体験記一覧</span>
+    <p class="mt-2"><%= @cat.introduction %></p>
+  </div>
+</div>
+
+<p class="border mt-5"></p>
+<% if @pagy.vars[:count] > 0 %>
+  <% @blogs.each do |blog| %>
+      <article class="media px-5">
+        <div class="media-content">
+          <div class="content">
+            <h4 class="mt-2"><%= link_to blog.title, blog_path(blog.id) %></h4>
+            <p class="txt-limit">
+              <%= blog.content %>
+            </p>
+            <p>
+              <% if blog.disease_name.present? %>
+                <small>病名： <%= blog.disease_name %></small>
+              <% end %>
+              <% if blog.symptoms.present? %>
+                <div>
+                  <% blog.symptoms.each do |symptom| %>
+                    <small># <%= symptom.detail %></small>
+                  <% end %>
+                </div>
+              <% end %>
+            </p>
+            <p>
+              <small><i class="far fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
+            </p>
+          </div>
+        </div>
+        <div class="media-right">
+          <div>
+            <% if blog.user == current_user %>
+              <div class="buttons are-small mb-4">
+                <%= link_to edit_blog_path(blog.id), class: "button" do %>
+                  <span class="icon"><i class="far fa-pen-to-square"></i></span>
+                  <span>編集</span>
+                <% end %>
+                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }, class: "button" do %>
+                  <span class="icon"><i class="fas fa-trash-can"></i></span>
+                  <span>削除</span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%=  link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
+          </div>
+        </div>
+      </article>
+  <% end %>
+<% else %>
+  <p>投稿されている体験記はありません。</p>
 <% end %>
-</table>
+<p class="border mt-5"></p>
 
-<%== pagy_nav(@pagy) %>
+<%== pagy_bulma_nav(@pagy) %>
 
-<%= link_to '戻る', 'javascript:history.back()' %>
+<%= link_to '戻る', 'javascript:history.back()', class: "button is-light is-rounded m-4" %>

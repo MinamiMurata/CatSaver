@@ -13,10 +13,44 @@
  *= require_tree .
  *= require_self
  */
+@import "font-awesome";
+
+body {
+  margin: 0;
+  background-image: url("pink_paws.png");
+  padding-top: 4rem !important;
+}
+
+.column {
+  background-color: #fff;
+}
+
+.alert {
+  color: #008b8b;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: end;
+}
 
 .main_icon {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.is-aqua-green {
+  background-color: #88bfbf !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.is-pink {
+  @extend .is-aqua-green;
+  background-color: #fbb !important;
 }

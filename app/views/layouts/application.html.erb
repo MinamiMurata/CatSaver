@@ -11,36 +11,105 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <h3>CatSaver</h3>
-      <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "症状から調べる", select_symptom_path %>
-        <%= link_to "体験記を見る", blogs_path %>
-        <% if user_signed_in? %>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "ログイン", new_user_session_path %>
-          <%= link_to "ユーザー登録", new_user_registration_path %>
-        <% end %>
-        <% if current_user&.admin? %>
-          <%= link_to "管理者ページ", admin_root_path %>
-        <% end %>
+  <body class="has-navbar-fixed-top">
+  <div class="content">
+    <header class="header">
+      <nav class="navbar is-transparent py-2 px-4 is-white is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to "CatSaver", root_path, class: "navbar-item" %>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <%= link_to root_path do %>
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span>Home</span>
+              <% end %>
+            </div>
+            <div class="navbar-item">
+              <%= link_to select_symptom_path do %>
+                <span class="icon"><i class="fas fa-magnifying-glass"></i></span>
+                <span>症状から調べる</span>
+              <% end %>
+            </div>
+            <div class="navbar-item">
+              <%= link_to blogs_path do %>
+                <span class="icon"><i class="fas fa-book-open-reader"></i></span>
+                <span>体験記を見る</span>
+              <% end %>
+            </div>
+          </div>
+          <% if user_signed_in? %>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <%= link_to user_path(current_user.id), class: "button" do %>
+                    <span class="icon"><i class="far fa-user"></i></span>
+                    <span>マイページ</span>
+                  <% end %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "button" do %>
+                    <span class="icon"><i class="fas fa-right-from-bracket"></i></span>
+                    <span>ログアウト</span>
+                  <% end %>
+                  <% if current_user.admin? %>
+                    <%= link_to admin_root_path, class: "button" do %>
+                      <span class="icon"><i class="fas fa-user-tie"></i></span>
+                      <span>管理者ページ</span>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <%= link_to new_user_session_path, class: "button" do %>
+                    <span class="icon"><i class="fas fa-right-to-bracket"></i></span>
+                    <span>ログイン</span>
+                  <% end %>
+                  <%= link_to new_user_registration_path, class: "button" do %>
+                    <span class="icon"><i class="fas fa-user-plus"></i></span>
+                    <span>ユーザー登録</span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </nav>
     </header>
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
-    
-    <%= yield %>
 
-    <footer>
-      <div>&copy;Min. 2023</div>
+    <div class="column is-8 is-offset-2">
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+      
+      <%= yield %>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>&copy;Min. 2023</p>
+      </div>
     </footer>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $(".navbar-burger").click(function() {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+      });
+    });
+  </script>
   </body>
 </html>
