@@ -39,6 +39,7 @@ gem 'font-awesome-sass'
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 gem 'unicorn'
+gem "bulma-rails"
 
 group :development, :test do
   gem 'capistrano', '3.16.0'
