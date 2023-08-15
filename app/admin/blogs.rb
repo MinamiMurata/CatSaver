@@ -33,7 +33,9 @@ ActiveAdmin.register Blog do
   filter :title
   filter :content
   filter :disease_name
-  filter :age_range, as: :select, collection: Blog.age_ranges_i18n.invert.map { |k, v| [k, Blog.age_ranges[v]] }
+  filter :age_range,
+         as: :select,
+         collection: Blog.age_ranges_i18n.invert.map { |k, v| [k, Blog.age_ranges[v]] }
   filter :created_at
 
   # 新規作成/編集ページ

@@ -47,7 +47,7 @@ set :rbenv_type, :system
 set :log_level, :info
 
 namespace :deploy do
-  before "deploy:publishing", "db:seed_fu"
+  # before "deploy:publishing", "db:seed_fu"
 
   desc "Restart application"
   task :restart do
