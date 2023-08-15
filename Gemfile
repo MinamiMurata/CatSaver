@@ -36,6 +36,8 @@ gem 'binding_of_caller'
 gem 'pagy'
 gem 'activeadmin'
 gem 'font-awesome-sass'
+gem 'fog-aws'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
