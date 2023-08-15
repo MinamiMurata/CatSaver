@@ -85,7 +85,7 @@
   </div>
 <% end %>
 
-<p class="mr-5 align-right font-lil-bigger"><%= link_to "#{@user.name}の体験記一覧へ", blog_list_user_path %></p>
+<p class="mt-6 mr-5 align-right font-lil-bigger"><%= link_to "#{@user.name}の体験記一覧へ", blog_list_user_path %></p>
 
 <div class="columns">
   <% @blogs.each do |blog| %>
@@ -110,9 +110,11 @@
                   <small>病名： <%= blog.disease_name %></small>
                 <% end %>
                 <% if blog.symptoms.present? %>
-                  <% blog.symptoms.each do |symptom| %>
-                    <div class="button is-small is-rounded is-static m-1"><%= symptom.detail %></div>
-                  <% end %>
+                  <div>
+                    <% blog.symptoms.each do |symptom| %>
+                      <small># <%= symptom.detail %></small>
+                    <% end %>
+                  </div>
                 <% end %>
               </p>
               <p>

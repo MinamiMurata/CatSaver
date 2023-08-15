@@ -29,9 +29,11 @@
                 <small>病名： <%= blog.disease_name %></small>
               <% end %>
               <% if blog.symptoms.present? %>
-                <% blog.symptoms.each do |symptom| %>
-                  <div class="button is-small is-rounded is-static m-1"><%= symptom.detail %></div>
-                <% end %>
+                <div>
+                  <% blog.symptoms.each do |symptom| %>
+                    <small># <%= symptom.detail %></small>
+                  <% end %>
+                </div>
               <% end %>
             </p>
             <p>
