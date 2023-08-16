@@ -2,25 +2,204 @@
 <html>
   <head>
     <title>Internal Server Error (500)</title>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
-      .error {
-        padding-top: 16%;
+      @import url("https://fonts.googleapis.com/css?family=Shadows+Into+Light");
+      :root {
+        --maincolor: #fff;
+        --secondarycolor: #000;
       }
-      p {
+
+      html {
+        font-size: 16px;
+        font-family: "Shadows Into Light", cursive;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background-color: var(--secondarycolor);
+        color: var(--maincolor);
+      }
+
+      .a-title {
+        font-size: 10rem;
         text-align: center;
       }
-      img {
-        display: block;
-        margin: 0 auto;
+
+      .a-message {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .o-cat {
+        width: 35vh;
+        margin: auto;
+        padding: 3rem;
+      }
+
+      .m-ear,
+      .m-eye {
+        background-color: var(--maincolor);
+      }
+
+      .m-ears {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        padding: 1vh 0.5vh;
+        z-index: 1;
+      }
+
+      .m-ear {
+        height: 14vh;
+        width: 10vh;
+        border-radius: 40% 70% 10% 10%;
+        position: relative;
+      }
+
+      .m-ear.-left {
+        transform: rotateZ(15deg);
+      }
+
+      .m-ear.-right {
+        transform: rotateY(180deg) rotateZ(15deg);
+      }
+
+      .m-ear:after,
+      .m-ear:before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: var(--secondarycolor);
+        bottom: 0;
+        right: 70%;
+        border-radius: 50%;
+      }
+
+      .m-ear:after {
+        height: 40%;
+        transform: rotate(15deg);
+      }
+
+      .m-ear:before {
+        height: 35%;
+        transform: rotate(-15deg);
+      }
+
+      .m-face {
+        position: relative;
+        background-color: var(--secondarycolor);
+        border-radius: 100% 100% 0 0;
+        margin: -8vh auto 0;
+        padding: 8vh 0 6vh;
+        width: 90%;
+      }
+
+      .m-eyes {
+        display: flex;
+        justify-content: space-around;
+        overflow: hidden;
+      }
+
+      .m-eye {
+        width: 10vh;
+        height: 8vh;
+        border-radius: 70%;
+        position: relative;
+      }
+
+      .m-eye:before {
+        content: "";
+        position: absolute;
+        height: 50%;
+        left: -2vh;
+        right: -2vh;
+        background-color: var(--secondarycolor);
+        border-radius: 0 0 35% 35%;
+        z-index: 2;
+        animation: eyes 5s ease infinite;
+      }
+
+      .m-eye:after {
+        content: "";
+        width: 10%;
+        height: 15%;
+        border-radius: 50%;
+        background-color: var(--maincolor);
+        position: absolute;
+        top: 40%;
+      }
+
+      .m-eye.-left:after {
+        right: -5%;
+      }
+
+      .m-eye.-right:after {
+        left: -5%;
+      }
+
+      .a-eyePupil {
+        background-color: var(--secondarycolor);
+        width: 30%;
+        left: 35%;
+        position: absolute;
+        height: 50%;
+        border-radius: 50%;
+        top: 25%;
+      }
+
+      .a-eyePupil:after {
+        content: "";
+        background-color: var(--maincolor);
+        width: 20%;
+        left: 20%;
+      }
+
+      .m-nose {
+        border-radius: 40% 40% 70% 70%;
+        background-color: var(--maincolor);
+        width: 4vh;
+        height: 2vh;
+        margin: auto;
+      }
+
+      @keyframes eyes {
+        0%,
+        5%,
+        100% {
+          height: 50%;
+        }
+        2% {
+          height: 110%;
+        }
       }
     </style>
   </head>
 
   <body>
-    <div class="error">
-      <img src="/app/assets/images/500.png" />
-      <p>サーバーエラーが発生しました。</p>
-    </div>
+    <div class="o-500">
+      <h1 class="a-title">500</h1>
+      <p class="a-message">サーバーエラーが発生しました。</p>
+      <div class="o-cat">
+        <div class="m-ears">
+          <div class="m-ear -right"></div>
+          <div class="m-ear -left"></div>
+        </div>
+        <div class="m-face">
+          <div class="m-eyes">
+            <div class="m-eye -left">
+              <div class="a-eyePupil"></div>
+            </div>
+            <div class="m-eye -right">
+              <div class="a-eyePupil"></div>
+            </div>
+          </div>
+          <div class="m-nose"></div>
+        </div>
+      </div>
   </body>
 </html>
