@@ -39,7 +39,7 @@
 <div class="columns">
   <% @blogs.each do |blog| %>
     <div class="column is-one-third">
-      <div class="card">
+      <div class="card reverse">
         <%= link_to blog_path(blog.id) do %>
           <div class="card-image image is-4by3 has-background-light">
             <%= image_tag(blog.images.first) if blog.images.attached? %>
@@ -59,9 +59,11 @@
                   <small>病名： <%= blog.disease_name %></small>
                 <% end %>
                 <% if blog.symptoms.present? %>
-                  <% blog.symptoms.each do |symptom| %>
-                    <div class="button is-small is-rounded is-static m-1"><%= symptom.detail %></div>
-                  <% end %>
+                  <div>
+                    <% blog.symptoms.each do |symptom| %>
+                      <small># <%= symptom.detail %></small>
+                    <% end %>
+                  </div>
                 <% end %>
               </p>
               <p>

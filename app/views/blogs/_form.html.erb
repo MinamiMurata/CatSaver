@@ -38,7 +38,7 @@
     <p>（複数選択が可能です）</p>
     <div id="file-js" class="file is-small has-name m-4">
       <label class="file-label">
-        <%= form.file_field :images, multiple: true, class: "file-input" %>
+        <%= form.file_field :images, multiple: true, direct_upload: true, class: "file-input" %>
         <span class="file-cta">
           <span class="file-icon"><i class="far fa-image"></i></span>
           <span class="file-label">ファイルを選択</span>

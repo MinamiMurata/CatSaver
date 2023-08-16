@@ -90,7 +90,7 @@
 <div class="columns">
   <% @blogs.each do |blog| %>
     <div class="column is-one-third">
-      <div class="card">
+      <div class="card reverse">
         <%= link_to blog_path(blog.id) do %>
           <div class="card-image image is-4by3 has-background-light">
             <%= image_tag(blog.images.first) if blog.images.attached? %>
