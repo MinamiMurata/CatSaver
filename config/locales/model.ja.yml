@@ -116,3 +116,4 @@ ja:
   general: 一般
   admin: 管理者
   guest: ゲスト
+  no_selection_error: 症状を１つ以上選択してください。
