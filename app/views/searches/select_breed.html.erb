@@ -2,7 +2,7 @@
 
 <h3>猫種の選択</h3>
 
-<%= form_with url: search_results_path, method: :get, local: true do |form| %>
+<%= form_with url: search_results_path, method: :get do |form| %>
   
   <div class="field">
     <p>該当する項目を選んで「結果を見る」を押してください。<br>
@@ -12,7 +12,11 @@
     </div>
   </div>
 
-<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-medium is-rounded mt-6"  %>
+<p class="align-center mt-6">
+  ＊結果が表示されるまでに少々お時間がかかります。<br>
+  恐れ入りますが、「結果を見る」ボタン押下後、そのまましばらくお待ちください。
+</p>
+<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-medium is-rounded mt-4" %>
 <% end %>
 
 <%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>

@@ -2,12 +2,11 @@
 
 <h3>年齢層の選択</h3>
 
-<%= form_with url: select_breed_path, method: :get, local: true do |form| %>
+<%= form_with url: select_breed_path, method: :get do |form| %>
 
   <div class="field">
     <p>該当する項目を選んで「次へ」を押してください。<br>
     （年齢で絞り込みを行わない場合は、何も選択せずに「次へ」で進んでください。）</p>
-    <%#= form.select :age_range, @age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: "選択してください" %>
     <div class="radio-group">
       <% @age_ranges.keys.each do |k| %>
           <div class="radio-area">
