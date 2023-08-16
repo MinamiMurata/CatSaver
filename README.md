@@ -13,13 +13,13 @@
 
 - AWS EC2
 - gem devise
-- gem cancancan
 
 ## カリキュラム外の技術
 
 - gem ransack
 - gem pagy
 - gem ActiveAdmin
+- Active Storage
 - ChatGPT API
 
 ## 実行手順

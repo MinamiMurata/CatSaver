@@ -46,6 +46,14 @@ body {
   text-align: end;
 }
 
+.reverse a {
+  color: hsl(0, 0%, 21%) !important;
+}
+
+.reverse a :hover {
+  color: hsl(229, 53%, 53%) !important;
+}
+
 .main_icon {
   width: 100px;
   height: 100px;
