@@ -27,7 +27,15 @@ body {
 }
 
 .alert {
+  font-weight: bold;
+}
+
+.alert-notice {
   color: #008b8b;
+}
+
+.alert-error {
+  color: red;
 }
 
 .align-center {

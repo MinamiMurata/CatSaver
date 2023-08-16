@@ -12,6 +12,9 @@
   </head>
 
   <body class="has-navbar-fixed-top">
+  <div id="loading">
+    <div class="loader"></div>
+  </div>
   <div class="content">
     <header class="header">
       <nav class="navbar is-transparent py-2 px-4 is-white is-fixed-top" role="navigation" aria-label="main navigation">
@@ -109,6 +112,17 @@
         $(".navbar-burger").toggleClass("is-active");
         $(".navbar-menu").toggleClass("is-active");
       });
+    });
+  </script>
+  <script>
+    $(function(){
+    $(window).on('load',function(){
+        $('.loader').delay(200).fadeOut(200);
+        $('#loading').delay(300).fadeOut(300);
+    });
+    setTimeout(function(){
+        $('#loading').fadeOut(500);
+    },30000);
     });
   </script>
   </body>
