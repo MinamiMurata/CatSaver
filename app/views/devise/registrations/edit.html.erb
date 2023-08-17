@@ -3,6 +3,8 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <p class="has-text-danger-dark">*は必須項目です。</p>
+
   <div class="columns m-4">
     <div class="column is-narrow">
       <div class="field">
@@ -27,21 +29,25 @@
 
     <div class="column">
       <div class="field">
-        <%= f.label :name, class: "label" %>
+        <div>
+          <%= f.label :name, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+        </div>
         <div class="control">
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input", placeholder: "登録したい名前を入力してください" %>
         </div>
       </div>
       <div class="field">
         <%= f.label :introduction, class: "label" %>
         <div class="control">
-          <%= f.text_area :introduction, autocomplete: "introduction", class: "textarea", rows: "10" %>
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "textarea", rows: "10", placeholder: "プロフィールを入力してください。（ご自身のことや愛猫のことなどを紹介してください！）" %>
         </div>
       </div>
       <div class="field">
-        <%= f.label :email, class: "label" %>
+        <div>
+          <%= f.label :email, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+        </div>
         <div class="control">
-          <%= f.email_field :email, autocomplete: "email", class: "input" %>
+          <%= f.email_field :email, autocomplete: "email", class: "input", placeholder: "メールアドレスを入力してください" %>
         </div>
       </div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

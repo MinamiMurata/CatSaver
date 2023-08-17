@@ -19,5 +19,10 @@ module CatSaver
     config.time_zone = "Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_storage.replace_on_assign_to_many = false
+
+    config.generators do |g|
+      g.test_framework :rspec, fixtures: true, view_specs: false, helper_specs: false, routing_specs: false, controller_specs: false, request_specs: false
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
   end
 end

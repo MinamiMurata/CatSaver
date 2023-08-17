@@ -10,6 +10,8 @@
     </div>
   <% end %>
 
+  <p class="has-text-danger-dark">*は必須項目です。</p>
+
   <div class="columns m-4">
     <div class="column is-narrow">
       <div class="field">
@@ -34,15 +36,17 @@
     
     <div class="column">
       <div class="field">
-        <%= form.label :name, class: "label" %>
+        <div>
+        <%= form.label :name, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+        </div>
         <div class="control">
-          <%= form.text_field :name, autofocus: true, class: "input" %>
+          <%= form.text_field :name, autofocus: true, class: "input", placeholder: "名前を入力してください" %>
         </div>
       </div>
       <div class="field">
         <%= form.label :introduction, class: "label" %>
         <div class="control">
-          <%= form.text_area :introduction, class: "textarea", rows: "10" %>
+          <%= form.text_area :introduction, class: "textarea", rows: "10", placeholder: "紹介文を入力してください。（あなたの自慢の猫さんを紹介してください！）" %>
         </div>
       </div>
       <div class="field">
@@ -52,7 +56,9 @@
         </div>
       </div>
       <div class="field">
-        <%= form.label :breed_name, class: "label" %>
+        <div>
+          <%= form.label :breed_name, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+        </div>
         <div class="select">
           <%= form.select :breed_id, Breed.all.map{|b|[b.name, b.id]}, include_blank: "選択してください" %>
         </div>
