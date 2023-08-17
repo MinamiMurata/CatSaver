@@ -21,16 +21,20 @@
     </div>
   <% end %>
 
+  <p class="has-text-danger-dark">*は必須項目です。</p>
+
   <div class="field">
     <%= form.label "誰の体験記ですか？", class: "label" %>
     <div class="select">
-      <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, include_blank: true %>
+      <%= form.select :cat_id, current_user.cats.all.map{|cat|[cat.name, cat.id]}, { include_blank: "選択してください" }, include_blank: true %>
     </div>
   </div>
 
   <div class="field mt-5">
-    <%= form.label :title, class: "label" %>
-    <%= form.text_field :title, class: "input" %>
+    <div>
+      <%= form.label :title, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+    </div>
+    <%= form.text_field :title, class: "input", placeholder: "タイトルを入力してください。" %>
   </div>
 
   <div class="field mt-5">
@@ -61,8 +65,10 @@
   </div>
 
   <div class="field mt-5">
-    <%= form.label :content, class: "label" %>
-    <%= form.text_area :content, class: "textarea", rows: "20"%>
+    <div>
+      <%= form.label :content, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+    </div>
+    <%= form.text_area :content, class: "textarea", rows: "20", placeholder: "本文を入力してください。（あなたの愛猫の体験をぜひシェアしてください！）" %>
   </div>
 
   <p class="border mt-6"></p>
@@ -70,13 +76,13 @@
   <div class="field m-5">
     <%= form.label :age_range, class: "label" %>
     <div class="select">
-      <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, include_blank: true %>
+      <%= form.select :age_range, Blog.age_ranges.keys.map {|k| [I18n.t("enums.blog.age_range.#{k}"), k]}, { include_blank: "選択してください" }, include_blank: true %>
     </div>
   </div>
 
   <div class="field m-5">
     <%= form.label :disease_name, class: "label" %>
-    <%= form.text_field :disease_name, class: "input" %>
+    <%= form.text_field :disease_name, class: "input", placeholder: "体験記に関連する病名があれば入力してください" %>
   </div>
 
   <div class="field m-5">
