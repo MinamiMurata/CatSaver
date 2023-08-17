@@ -44,7 +44,7 @@ RSpec.describe User, type: :system do
 
   describe "アカウント管理機能" do
     before do
-      user = FactoryBot.create(:user, email: "test@test.com")
+      FactoryBot.create(:user, email: "test@test.com")
       visit new_user_session_path
       fill_in "user[email]", with: "test@test.com"
       fill_in "user[password]", with: "password"
@@ -54,6 +54,7 @@ RSpec.describe User, type: :system do
       it "更新できる" do
         click_on "マイページ"
         click_on "アカウント情報編集"
+        attach_file "user[image]", "#{Rails.root}/spec/fixtures/images/test.jpg"
         fill_in "user[introduction]", with: "プロフィールを追加します！"
         click_on "更新"
         expect(page).to have_content "ユーザー情報を変更しました。"
@@ -79,7 +80,7 @@ RSpec.describe User, type: :system do
 
   describe "管理画面機能" do
     before do
-      admin = FactoryBot.create(:admin_user)
+      FactoryBot.create(:admin_user)
       visit new_user_session_path
       fill_in "user[email]", with: "admintest@test.com"
       fill_in "user[password]", with: "password"
