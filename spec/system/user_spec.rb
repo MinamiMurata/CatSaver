@@ -9,7 +9,7 @@ RSpec.describe User, type: :system do
         fill_in "user[email]", with: "test1@test.com"
         fill_in "user[password]", with: "password"
         fill_in "user[password_confirmation]", with: "password"
-        click_on "ユーザー登録"
+        find("div.actions input").click
         expect(page).to have_content "ユーザー登録が完了しました。"
       end
     end
@@ -22,7 +22,7 @@ RSpec.describe User, type: :system do
         visit new_user_session_path
         fill_in "user[email]", with: "test@test.com"
         fill_in "user[password]", with: "password"
-        click_on "ログイン"
+        find("div.actions input").click
         expect(page).to have_content "ログインしました。"
       end
     end
@@ -46,13 +46,14 @@ RSpec.describe User, type: :system do
     before do
       user = FactoryBot.create(:user, email: "test@test.com")
       visit new_user_session_path
-      fill_in "session[email]", with: "test@test.com"
-      fill_in "session[password]", with: "password"
-      click_on "ログイン"
+      fill_in "user[email]", with: "test@test.com"
+      fill_in "user[password]", with: "password"
+      find("div.actions input").click
     end
     context "ユーザーがアカウント情報を編集した場合" do
       it "更新できる" do
-        visit edit_user_registration_path(user.id)
+        click_on "マイページ"
+        click_on "アカウント情報編集"
         fill_in "user[introduction]", with: "プロフィールを追加します！"
         click_on "更新"
         expect(page).to have_content "ユーザー情報を変更しました。"
@@ -66,9 +67,11 @@ RSpec.describe User, type: :system do
     end
     context "ユーザーが退会した場合" do
       it "退会できる" do
-        visit cancellation_user_path(user.id)
+        click_on "マイページ"
+        click_on "アカウント情報編集"
+        click_link "退会手続きはこちら"
         click_on "退会する"
-        accept_confirm { click_on "OK" }
+        page.accept_confirm
         expect(page).to have_content "退会処理が完了いたしました。"
       end
     end
@@ -78,9 +81,9 @@ RSpec.describe User, type: :system do
     before do
       admin = FactoryBot.create(:admin_user)
       visit new_user_session_path
-      fill_in "session[email]", with: "admintest@test.com"
-      fill_in "session[password]", with: "password"
-      click_on "ログイン"
+      fill_in "user[email]", with: "admintest@test.com"
+      fill_in "user[password]", with: "password"
+      find("div.actions input").click
     end
     context "管理者が管理画面に遷移した場合" do
       it "管理画面に遷移できる" do
@@ -103,7 +106,7 @@ RSpec.describe User, type: :system do
         visit new_user_session_path
         fill_in "user[email]", with: "test@test.com"
         fill_in "user[password]", with: "password"
-        click_on "ログイン"
+        find("div.actions input").click
         visit admin_root_path
         expect(page).to have_content "アクセス権限がありません。"
       end
