@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Cat, type: :system do
+RSpec.describe "猫管理機能", type: :system do
   describe "猫CRUD機能" do
     before do
       user = FactoryBot.create(:user, email: "test@test.com")

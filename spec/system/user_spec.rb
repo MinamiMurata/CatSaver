@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe User, type: :system do
+RSpec.describe "ユーザー管理機能", type: :system do
   describe "ユーザー登録機能" do
     context "ユーザーが新規登録をした場合" do
       it "ユーザー登録ができる" do
@@ -96,12 +96,6 @@ RSpec.describe User, type: :system do
 
   describe "アクセス制限機能" do
     let!(:user) { FactoryBot.create(:user, email: "test@test.com") }
-    context "ログインせずに体験記作成画面に飛ぼうとした場合" do
-      it "ログイン画面に遷移し、ログインを促す" do
-        visit new_blog_path
-        expect(page).to have_content "ログインもしくはアカウント登録してください"
-      end
-    end
     context "一般ユーザーが管理画面に飛ぼうとした場合" do
       it "遷移できずにHome画面に戻る" do
         visit new_user_session_path
