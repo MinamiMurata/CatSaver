@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :breed do
-    id { 1 }
-    name { Faker::Creature::Cat.breed }
+    name { "アビシニアン" }
+  end
+  factory :second_breed, class: Breed do
+    name { "メインクーン" }
   end
 end
