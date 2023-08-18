@@ -16,7 +16,9 @@
     <header class="header">
       <nav class="navbar is-transparent py-2 px-4 is-white is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <%= link_to "CatSaver", root_path, class: "navbar-item" %>
+          <%= link_to root_path do %>
+            <%= image_tag asset_path('CatSaver_logo.png'), class: "navbar-item logo", alt:"CatSaver" %>
+          <% end %>
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -98,7 +100,7 @@
     </div>
     <footer class="footer">
       <div class="content has-text-centered">
-        <p>&copy;Min. 2023</p>
+        <p>&copy;2023 CatSaver Created by Min.</p>
       </div>
     </footer>
   </div>
