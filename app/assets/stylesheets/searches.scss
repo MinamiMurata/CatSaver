@@ -142,6 +142,28 @@
   color: #fff;
 }
 
+/* ローディングアニメーション */
+#loading {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.loading-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 70%;
+}
+
 /* ChatGpt結果表示書式 */
 .ChatGpt_result {
   white-space: pre-wrap;
