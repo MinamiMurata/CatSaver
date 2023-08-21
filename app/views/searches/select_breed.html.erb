@@ -16,7 +16,19 @@
   ＊結果が表示されるまでに少々お時間がかかります。<br>
   恐れ入りますが、「結果を見る」ボタン押下後、そのまましばらくお待ちください。
 </p>
-<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-medium is-rounded mt-4" %>
+<%= form.submit '結果を見る', name: nil, class: "button is-fullwidth is-pink is-medium is-rounded mt-4", id:"result_button" %>
+<span id="loading" style="display:none;">
+  <div><%= image_tag asset_path('cat_loading.gif'), class: "loading-img" %></div>
+</span>
 <% end %>
 
 <%= link_to '戻る', 'javascript:history.back()', class: "button is-fullwidth is-light is-rounded mt-5" %>
+
+<script>
+$('input#result_button').click(function(e) {
+  e.preventDefault();
+  $('form').submit();
+  $('#result_button').hide(); 
+  $('#loading').show();
+});
+</script>
