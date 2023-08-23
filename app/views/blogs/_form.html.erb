@@ -53,7 +53,7 @@
     <% if @blog.images.attached? %>
       <div class="blog-attach-images">
         <% @blog.images.each do |image| %>
-          <label for="blog_image_ids_<%= image.id %>" >
+          <label for="blog_image_ids_<%= image.id %>">
             <span>
               <%= form.check_box :image_ids, {multiple: true}, image.id, false %>削除<br>
               <%= image_tag image.variant(resize_to_limit: [275, 275]) %>

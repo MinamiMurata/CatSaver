@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="main_visual">
-  <%= image_tag asset_path('cat_main.jpg')%>
+  <%= image_tag asset_path('cat_main.jpg') %>
   <p>
     このアプリでは、猫の症状に関連する病気の情報等を検索できます。<br>
     また、猫の症状に関連する体験記を閲覧することもできます。<br>
@@ -12,13 +12,12 @@
 </div>
 
 <div class="align-center my-6">
-<p class="mb-4"><strong>症状に関連する病気についてAIがお調べします！</strong></p>
-<%= link_to select_symptom_path, class: "button is-rounded is-link is-light is-medium is-focused" do %>
-  <span class="icon"><i class="fas fa-magnifying-glass"></i></span>
-  <span>症状から調べる</span>
-<% end %>
+  <p class="mb-4"><strong>症状に関連する病気についてAIがお調べします！</strong></p>
+  <%= link_to select_symptom_path, class: "button is-rounded is-link is-light is-medium is-focused" do %>
+    <span class="icon"><i class="fas fa-magnifying-glass"></i></span>
+    <span>症状から調べる</span>
+  <% end %>
 </div>
-
 
 <div class="guide-box">
   <div class="box-title">サービスの目的</div>

@@ -17,50 +17,50 @@
 <p class="border mt-5"></p>
 <% if @pagy.vars[:count] > 0 %>
   <% @blogs.each do |blog| %>
-      <article class="media px-5">
-        <div class="media-content">
-          <div class="content">
-            <h4 class="mt-2"><%= link_to blog.title, blog_path(blog.id) %></h4>
-            <p class="txt-limit">
-              <%= blog.content %>
-            </p>
-            <p>
-              <% if blog.disease_name.present? %>
-                <small>病名： <%= blog.disease_name %></small>
-              <% end %>
-              <% if blog.symptoms.present? %>
-                <div>
-                  <% blog.symptoms.each do |symptom| %>
-                    <small># <%= symptom.detail %></small>
-                  <% end %>
-                </div>
-              <% end %>
-            </p>
-            <p>
-              <small><i class="far fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
-            </p>
-          </div>
-        </div>
-        <div class="media-right">
-          <div>
-            <% if blog.user == current_user %>
-              <div class="buttons are-small mb-4">
-                <%= link_to edit_blog_path(blog.id), class: "button" do %>
-                  <span class="icon"><i class="far fa-pen-to-square"></i></span>
-                  <span>編集</span>
-                <% end %>
-                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }, class: "button" do %>
-                  <span class="icon"><i class="fas fa-trash-can"></i></span>
-                  <span>削除</span>
+    <article class="media px-5">
+      <div class="media-content">
+        <div class="content">
+          <h4 class="mt-2"><%= link_to blog.title, blog_path(blog.id) %></h4>
+          <p class="txt-limit">
+            <%= blog.content %>
+          </p>
+          <p>
+            <% if blog.disease_name.present? %>
+              <small>病名： <%= blog.disease_name %></small>
+            <% end %>
+            <% if blog.symptoms.present? %>
+              <div>
+                <% blog.symptoms.each do |symptom| %>
+                  <small># <%= symptom.detail %></small>
                 <% end %>
               </div>
             <% end %>
-          </div>
-          <div>
-            <%= link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
-          </div>
+          </p>
+          <p>
+            <small><i class="far fa-calendar mr-1"></i><%= blog.created_at.strftime("%Y/%m/%d") %></small>
+          </p>
         </div>
-      </article>
+      </div>
+      <div class="media-right">
+        <div>
+          <% if blog.user == current_user %>
+            <div class="buttons are-small mb-4">
+              <%= link_to edit_blog_path(blog.id), class: "button" do %>
+                <span class="icon"><i class="far fa-pen-to-square"></i></span>
+                <span>編集</span>
+              <% end %>
+              <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }, class: "button" do %>
+                <span class="icon"><i class="fas fa-trash-can"></i></span>
+                <span>削除</span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
+        </div>
+      </div>
+    </article>
   <% end %>
 <% else %>
   <p>投稿されている体験記はありません。</p>

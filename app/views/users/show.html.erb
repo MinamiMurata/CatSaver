@@ -42,11 +42,11 @@
       <div class="card card-cat">
         <%= link_to cat_path(cat.id) do %>
           <div class="card-content align-center">
-              <% if cat.image.present? %>
-                <%= image_tag cat.image.url, class: "cat_icon" %>
-              <% else %>
-                <%= image_tag asset_path('cat_icon.jpg'), class: "cat_icon" %>
-              <% end %>
+            <% if cat.image.present? %>
+              <%= image_tag cat.image.url, class: "cat_icon" %>
+            <% else %>
+              <%= image_tag asset_path('cat_icon.jpg'), class: "cat_icon" %>
+            <% end %>
           </div>
         <% end %>
         <div class="card-content">
@@ -76,7 +76,7 @@
   <% end %>
 </div>
 
-<% if user_signed_in? %>
+<% if @user == current_user %>
   <div class="ml-5 mt-6 mb-5">
     <%= link_to new_blog_path, class: "button is-link is-medium" do %>
       <span class="icon"><i class="far fa-pen-to-square"></i></span>
@@ -132,10 +132,10 @@
               <% end %>
             </div>
             <div class="card-footer-item">
-                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } do %>
-                  <span class="icon"><i class="fas fa-trash-can"></i></span>
-                  <span>削除</span>
-                <% end %>
+              <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } do %>
+                <span class="icon"><i class="fas fa-trash-can"></i></span>
+                <span>削除</span>
+              <% end %>
             </div>
           </footer>
         <% end %>

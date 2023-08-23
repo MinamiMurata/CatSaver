@@ -81,10 +81,10 @@
               <% end %>
             </div>
             <div class="card-footer-item">
-                <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } do %>
-                  <span class="icon"><i class="fas fa-trash-can"></i></span>
-                  <span>削除</span>
-                <% end %>
+              <%= link_to blog_path(blog.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } do %>
+                <span class="icon"><i class="fas fa-trash-can"></i></span>
+                <span>削除</span>
+              <% end %>
             </div>
           </footer>
         <% end %>
