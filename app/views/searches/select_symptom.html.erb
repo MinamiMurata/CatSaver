@@ -3,26 +3,25 @@
 <h3>症状の選択</h3>
 
 <%= form_with url: select_age_path, method: :get do |form| %>
-
   <div class="field">
     <p>気になっている症状のカテゴリーを選択してください。<br>
     カテゴリーを選択すると詳細が表示されますので、該当する項目を選んで「次へ」を押してください。<br>
     （複数のカテゴリー・詳細を選択していただけます）</p>
 
-    <%  @symptoms_categories.each do |category| %>
-        <div class="accordion">
-          <p class="menu js-menu"><%= form.label I18n.t(category) %></p>
-          <div class="contents">
-            <% @symptoms.where(category: category ).each do |symptom| %>
-              <div class="btn_check"><%= form.check_box :symptom_details, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:detail] %>
-                <%= form.label :symptom_details, symptom.detail, value: symptom[:detail] %>
-              </div>
-            <% end %>
-          </div>
+    <% @symptoms_categories.each do |category| %>
+      <div class="accordion">
+        <p class="menu js-menu"><%= form.label I18n.t(category) %></p>
+        <div class="contents">
+          <% @symptoms.where(category: category ).each do |symptom| %>
+            <div class="btn_check"><%= form.check_box :symptom_details, { multiple: true, disabled: symptom[:disabled], include_hidden: false }, symptom[:detail] %>
+              <%= form.label :symptom_details, symptom.detail, value: symptom[:detail] %>
+            </div>
+          <% end %>
         </div>
+      </div>
     <% end %>
   </div>
-  
+
   <%= form.submit '次へ', name: nil, class: "button is-fullwidth is-aqua-green is-medium is-rounded mt-5" %>
 <% end %>
 

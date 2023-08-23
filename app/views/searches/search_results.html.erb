@@ -1,9 +1,9 @@
 <p class="title is-4">あなたの回答と関連性のある情報はこちらです。</p>
 
 <h4>AIからの回答結果</h4>
-  <div class="ChatGpt_result">
-    <%= @result %>
-  </div>
+<div class="ChatGpt_result">
+  <%= @result %>
+</div>
 
 <h4 class="mt-6">検索した症状に関連する体験記一覧</h4>
 <% if @blogs.count > 0 %>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="media-right">
-          <%=  link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
+          <%= link_to image_tag(blog.images.first, class: "index_image"), blog_path(blog.id) if blog.images.attached? %>
         </div>
       </article>
     </div>

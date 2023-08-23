@@ -3,9 +3,9 @@
     <div id="error_explanation">
       <h5 class="has-text-danger-dark"><%= @cat.errors.count %>件のエラーがあります。</h5>
       <ul>
-      <% @cat.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @cat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -37,7 +37,7 @@
     <div class="column">
       <div class="field">
         <div>
-        <%= form.label :name, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
+          <%= form.label :name, class: "label inline_block" %><span class="has-text-danger-dark ml-1">*</span>
         </div>
         <div class="control">
           <%= form.text_field :name, autofocus: true, class: "input", placeholder: "名前を入力してください" %>
