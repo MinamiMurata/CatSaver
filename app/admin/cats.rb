@@ -6,7 +6,8 @@ ActiveAdmin.register Cat do
     selectable_column
     id_column
     column :name
-    column :introduction
+    column :breed
+    column :user
     column :created_at
     actions
   end
@@ -16,6 +17,9 @@ ActiveAdmin.register Cat do
     attributes_table do
       row :name
       row :introduction
+      row "体験記数" do |cat|
+        cat.blogs.count
+      end
       row :image do
         image_tag(cat.image.url, class: "main_icon") if cat.image?
       end

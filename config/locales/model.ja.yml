@@ -80,6 +80,7 @@ ja:
         general: 一般
         admin: 管理者
         guest: ゲスト
+        guest_admin: ゲスト管理者
   views:
     pagination:
       first: "&laquo; "
