@@ -1,22 +1,18 @@
 ActiveAdmin.register User do
-  permit_params :name,
-                :email,
-                :introduction,
-                :image,
-                :role,
-                :sign_in_count,
-                :last_sign_in_at,
-                :created_at,
-                :updated_at,
-                :is_deleted,
-                :deleted_at
+  permit_params do
+    if current_user.admin?
+      params = %i[name email introduction image role sign_in_count last_sign_in_at created_at updated_at is_deleted deleted_at]
+    elsif current_user.guest_admin?
+      params = %i[name introduction image role sign_in_count last_sign_in_at created_at updated_at is_deleted deleted_at]
+    end
+  end
 
   # 一覧ページ
   index do
     selectable_column
     id_column
     column :name
-    column :email
+    column :email if current_user.admin?
     column :role, :text, &:role_i18n
     column :last_sign_in_at
     column :is_deleted
@@ -28,10 +24,13 @@ ActiveAdmin.register User do
   show do
     attributes_table do
       row :name
-      row :email
+      row :email if current_user.admin?
       row :introduction
       row "猫数" do |user|
         user.cats.count
+      end
+      row "体験記数" do |user|
+        user.blogs.count
       end
       row :image do
         image_tag(user.image.url, class: "main_icon") if user.image?
@@ -49,7 +48,7 @@ ActiveAdmin.register User do
 
   # 一覧ページの検索条件
   filter :name
-  filter :email
+  filter :email, if: proc { current_user.admin? }
   filter :role, as: :select, collection: User.roles_i18n.invert.map { |k, v| [k, User.roles[v]] }
   filter :last_sign_in_at
   filter :sign_in_count

@@ -6,7 +6,10 @@ ActiveAdmin.register Blog do
     selectable_column
     id_column
     column :title
-    column :content
+    column :disease_name
+    column :age_range, :text, &:age_range_i18n
+    column :user
+    column :cat
     column :created_at
     actions
   end
@@ -33,9 +36,7 @@ ActiveAdmin.register Blog do
   filter :title
   filter :content
   filter :disease_name
-  filter :age_range,
-         as: :select,
-         collection: Blog.age_ranges_i18n.invert.map { |k, v| [k, Blog.age_ranges[v]] }
+  filter :age_range, as: :select, collection: Blog.age_ranges_i18n.invert.map { |k, v| [k, Blog.age_ranges[v]] }
   filter :created_at
 
   # 新規作成/編集ページ

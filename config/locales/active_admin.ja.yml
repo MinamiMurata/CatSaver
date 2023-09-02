@@ -127,3 +127,4 @@ ja:
       block: "リスト"
       grid: "グリッド"
       blog: "ブログ"
+  no_permissions: "権限がありません"

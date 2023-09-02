@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_user!
-    unless current_user.admin?
+    unless current_user.admin? || current_user.guest_admin?
       flash[:alert] = t("not_authorized")
       redirect_to root_path
     end

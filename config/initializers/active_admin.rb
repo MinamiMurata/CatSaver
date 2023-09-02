@@ -16,7 +16,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "CatSaver_logo_s.png"
 
   # == Load Paths
   #
@@ -163,7 +163,10 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_action :do_something_awesome
+  config.before_action :check_user_permissions, except: %i[index show]
+  def check_user_permissions
+    redirect_to admin_root_path, alert: t("no_permissions") if controller_name != "sessions" && current_user&.guest_admin?
+  end
 
   # == Attribute Filters
   #

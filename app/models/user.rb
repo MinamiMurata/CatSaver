@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
-  enum role: { general: 0, admin: 1, guest: 2 }
+  enum role: { general: 0, admin: 1, guest: 2, guest_admin: 3 }
   has_many :blogs, dependent: :destroy
   has_many :cats, dependent: :destroy
   mount_uploader :image, ImageUploader
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: "guest_admin@example.com") do |admin|
       admin.name = "ゲスト管理者"
       admin.password = SecureRandom.urlsafe_base64
-      admin.role = "admin"
+      admin.role = "guest_admin"
     end
   end
 
