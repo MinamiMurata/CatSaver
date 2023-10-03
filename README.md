@@ -4,6 +4,10 @@
 
 猫の症状から病名・体験記を検索できるアプリです。
 
+#### アプリ紹介 PDF（開発背景など）
+
+https://drive.google.com/file/d/1KdAPWLjfakseYkMWU1eD9IXXnF9faGpm/view?usp=sharing
+
 ## 開発言語
 
 - Ruby 3.0.1
